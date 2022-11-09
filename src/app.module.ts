@@ -1,3 +1,4 @@
+import { Product } from './products/products.entity';
 import { UserRoles } from 'src/roles/user-roles.entity';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -7,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
 import { Role } from './roles/roles.entity';
 import { AuthModule } from './auth/auth.module';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   controllers: [],
@@ -22,12 +24,13 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User, Role, UserRoles],
+      models: [User, Role, UserRoles, Product],
       autoLoadModels: true,
     }),
     UsersModule,
     RolesModule,
     AuthModule,
+    ProductsModule,
   ],
 })
 export class AppModule {}

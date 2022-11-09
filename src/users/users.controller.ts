@@ -1,3 +1,4 @@
+import { AddRoleDto } from './dto/add-role.dto';
 import { RolesGuard } from './../auth/roles.guard';
 import { User } from './users.entity';
 import { UsersService } from './users.service';
@@ -13,6 +14,8 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Создание пользователя' })
   @ApiResponse({ status: 200, type: User })
+  @Roles('Admin')
+  @UseGuards(RolesGuard)
   @Post()
   create(@Body() userDto: CreateUserDto) {
     return this.usersService.createUser(userDto);
@@ -25,5 +28,14 @@ export class UsersController {
   @Get()
   getAll() {
     return this.usersService.getAllUsers();
+  }
+
+  @ApiOperation({ summary: 'Выдать роль' })
+  @ApiResponse({ status: 200 })
+  @Roles('Admin')
+  @UseGuards(RolesGuard)
+  @Post('/role')
+  addRole(@Body() dto: AddRoleDto) {
+    return this.usersService.addRole(dto);
   }
 }
