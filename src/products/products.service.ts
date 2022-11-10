@@ -19,4 +19,14 @@ export class ProductsService {
     });
     return post;
   }
+
+  async GetAllProducts() {
+    const product = await this.productRepository.findAll();
+    return product;
+  }
+
+  async getProductById(id: string) {
+    const product = await this.productRepository.findOne({ where: { id } });
+    return product;
+  }
 }

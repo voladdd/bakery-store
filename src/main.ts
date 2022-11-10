@@ -1,4 +1,3 @@
-import { ValidationPipe } from './pipes/validation.pipe';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder } from '@nestjs/swagger';
 import { SwaggerModule } from '@nestjs/swagger/dist';
@@ -13,12 +12,21 @@ async function bootstrap() {
     .setDescription('Документация Rest API')
     .setVersion('1.0.0')
     .addTag('Vlad ebashit code')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'JWT',
+        description: 'Enter JWT token',
+        in: 'header',
+      },
+      'JWT-auth', // This name here is important for matching up with @ApiBearerAuth() in your controller!
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/api/docs', app, document);
-
-  app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(PORT, () => {
     console.log(`server started on port: ${PORT}`);

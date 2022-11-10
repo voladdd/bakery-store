@@ -16,7 +16,10 @@ export class RolesController {
     return this.roleService.CreateRole(dto);
   }
 
-  @ApiOperation({ summary: 'Получение всех ролей' })
+  @ApiOperation({
+    summary: 'Получение всех ролей',
+    description: 'Только для админа',
+  })
   @ApiResponse({ status: 200, type: [Role] })
   @Roles('Admin')
   @UseGuards(RolesGuard)

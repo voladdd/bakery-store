@@ -2,6 +2,8 @@ import { ProductsService } from './products.service';
 import {
   Body,
   Controller,
+  Get,
+  Param,
   Post,
   UploadedFile,
   UseInterceptors,
@@ -19,5 +21,15 @@ export class ProductsController {
   @UseInterceptors(FileInterceptor('image'))
   create(@Body() dto: CreateProductDto, @UploadedFile() image: any) {
     return this.productService.CreateProduct(dto, image);
+  }
+
+  @Get()
+  getAll() {
+    return this.productService.GetAllProducts();
+  }
+
+  @Get(':id')
+  getById(@Param('id') id: string) {
+    return this.productService.getProductById(id);
   }
 }
