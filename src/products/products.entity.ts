@@ -1,15 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  BelongsToMany,
-  Column,
-  DataType,
-  Model,
-  Table,
-} from 'sequelize-typescript';
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
 interface ProductCreationAttrs {
   title: string;
   description: string;
+  image: string | Promise<string>;
 }
 
 @Table({ tableName: 'products' })

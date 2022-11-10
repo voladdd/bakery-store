@@ -15,6 +15,6 @@ export class CreateUserDto {
     description: 'пароль пользователя ',
   })
   @IsString({ message: 'Должно быть строкой' })
-  @Length(4, 16, { message: 'Не меньше 4 и не больше 16' })
+  @Length(4, 24, { message: 'Не меньше 4 и не больше 24' })
   readonly password: string;
 }
