@@ -1,7 +1,7 @@
 import { ValidationPipe } from './../pipes/validation.pipe';
 import { AddRoleDto } from './dto/add-role.dto';
 import { RolesGuard } from './../auth/roles.guard';
-import { User } from './users.entity';
+import { User } from './users.model';
 import { UsersService } from './users.service';
 import {
   Body,

@@ -2,8 +2,7 @@ import { FilesModule } from './../files/files.module';
 import { Module } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ProductsController } from './products.controller';
-// import { User } from 'src/users/users.entity';
-import { Product } from './products.entity';
+import { Product } from './products.model';
 import { SequelizeModule } from '@nestjs/sequelize';
 
 @Module({

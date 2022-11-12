@@ -1,12 +1,12 @@
-import { Product } from './products/products.entity';
-import { UserRoles } from 'src/roles/user-roles.entity';
+import { Product } from './products/products.model';
+import { UserRoles } from 'src/roles/user-roles.model';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { User } from './users/users.entity';
+import { User } from './users/users.model';
 import { UsersModule } from './users/users.module';
 import { RolesModule } from './roles/roles.module';
-import { Role } from './roles/roles.entity';
+import { Role } from './roles/roles.model';
 import { AuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
 import { FilesModule } from './files/files.module';

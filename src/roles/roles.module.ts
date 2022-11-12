@@ -1,6 +1,6 @@
-import { UserRoles } from './user-roles.entity';
-import { User } from './../users/users.entity';
-import { Role } from './roles.entity';
+import { UserRoles } from './user-roles.model';
+import { User } from '../users/users.model';
+import { Role } from './roles.model';
 import { Module } from '@nestjs/common';
 import { RolesService } from './roles.service';
 import { RolesController } from './roles.controller';

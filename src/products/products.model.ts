@@ -46,4 +46,9 @@ export class Product extends Model<Product, ProductCreationAttrs> {
     type: DataType.STRING,
   })
   image: string;
+
+  @Column({
+    type: DataType.INTEGER,
+  })
+  rating: number;
 }

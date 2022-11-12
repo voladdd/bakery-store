@@ -1,5 +1,5 @@
 import { FilesService } from './../files/files.service';
-import { Product } from './products.entity';
+import { Product } from './products.model';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -29,4 +29,6 @@ export class ProductsService {
     const product = await this.productRepository.findOne({ where: { id } });
     return product;
   }
+
+  //getProductByParams
 }

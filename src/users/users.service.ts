@@ -1,11 +1,11 @@
 import { HttpStatus } from '@nestjs/common/enums';
 import { AddRoleDto } from './dto/add-role.dto';
-import { Role } from './../roles/roles.entity';
+import { Role } from '../roles/roles.model';
 import { RolesService } from './../roles/roles.service';
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
-import { User } from './users.entity';
+import { User } from './users.model';
 
 @Injectable()
 export class UsersService {

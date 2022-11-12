@@ -4,7 +4,7 @@ import { Body, Controller, Post, Get, Param, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/roles-auth.decorator';
 import { RolesGuard } from './../auth/roles.guard';
-import { Role } from './roles.entity';
+import { Role } from './roles.model';
 
 @ApiTags('Роли')
 @Controller('roles')

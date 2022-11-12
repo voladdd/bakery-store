@@ -11,7 +11,6 @@ async function bootstrap() {
     .setTitle('Пекарня нахукй')
     .setDescription('Документация Rest API')
     .setVersion('1.0.0')
-    .addTag('Vlad ebashit code')
     .addBearerAuth(
       {
         type: 'http',

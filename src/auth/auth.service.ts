@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common/exceptions';
 import { HttpStatus } from '@nestjs/common/enums';
 import * as bcrypt from 'bcryptjs';
-import { User } from 'src/users/users.entity';
+import { User } from 'src/users/users.model';
 
 @Injectable()
 export class AuthService {
