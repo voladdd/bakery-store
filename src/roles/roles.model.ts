@@ -29,7 +29,7 @@ export class Role extends Model<Role, RoleCreationAttrs> {
   id: number;
 
   @ApiProperty({
-    example: 'User',
+    example: 'Admin',
     description: 'Роль пользователя',
   })
   @Column({

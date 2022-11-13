@@ -11,6 +11,11 @@ import { Role } from './roles.model';
 export class RolesController {
   constructor(private roleService: RolesService) {}
 
+  @ApiOperation({
+    summary: 'Создание роли',
+    description: 'Только для админа',
+  })
+  @ApiResponse({ status: 200, type: Role })
   @Post()
   create(@Body() dto: CreateRoleDto) {
     return this.roleService.CreateRole(dto);
@@ -28,6 +33,11 @@ export class RolesController {
     return this.roleService.getAllRoles();
   }
 
+  @ApiOperation({
+    summary: 'Получение роли',
+    description: 'Только для админа',
+  })
+  @ApiResponse({ status: 200, type: Role })
   @Get('/:value')
   getByValue(@Param('value') value: string) {
     return this.roleService.getRoleByValue(value);

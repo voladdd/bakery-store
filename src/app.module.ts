@@ -1,3 +1,6 @@
+import { ProductCategories } from './products/product-categories.model';
+import { Category } from './products/categories/categories.model';
+import { CategoriesModule } from './products/categories/categories.module';
 import { Product } from './products/products.model';
 import { UserRoles } from 'src/roles/user-roles.model';
 import { Module } from '@nestjs/common';
@@ -30,13 +33,14 @@ import * as path from 'path';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User, Role, UserRoles, Product],
+      models: [User, Role, UserRoles, Product, Category, ProductCategories],
       autoLoadModels: true,
     }),
     UsersModule,
     RolesModule,
     AuthModule,
     ProductsModule,
+    CategoriesModule,
     FilesModule,
   ],
 })

@@ -1,5 +1,13 @@
+import { ProductCategories } from './product-categories.model';
+import { Category } from './categories/categories.model';
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import {
+  BelongsToMany,
+  Column,
+  DataType,
+  Model,
+  Table,
+} from 'sequelize-typescript';
 
 interface ProductCreationAttrs {
   title: string;
@@ -51,4 +59,7 @@ export class Product extends Model<Product, ProductCreationAttrs> {
     type: DataType.INTEGER,
   })
   rating: number;
+
+  @BelongsToMany(() => Category, () => ProductCategories)
+  categories: Category[];
 }

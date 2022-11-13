@@ -1,17 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNumber } from 'class-validator';
 
-export class AddRoleDto {
+export class AddCategoryDto {
   @ApiProperty({
-    example: 'Admin',
-    description: 'Название роли ',
+    example: 'Выпечка',
+    description: 'Название категории',
   })
   @IsString({ message: 'Должно быть строкой' })
-  readonly value: string;
+  readonly title: string;
   @ApiProperty({
     example: '1',
-    description: 'ID пользователя ',
+    description: 'ID продукта',
   })
   @IsNumber({}, { message: 'Должно быть числом' })
-  readonly userId: number;
+  readonly productId: number;
 }
