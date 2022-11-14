@@ -4,10 +4,12 @@ import {
   BelongsToMany,
   Column,
   DataType,
+  HasOne,
   Model,
   Table,
 } from 'sequelize-typescript';
 import { UserRoles } from 'src/roles/user-roles.model';
+import { Cart } from 'src/carts/carts.model';
 
 interface UserCreationAttrs {
   email: string;
@@ -45,7 +47,6 @@ export class User extends Model<User, UserCreationAttrs> {
   })
   @Column({
     type: DataType.STRING,
-    unique: true,
     allowNull: false,
   })
   password: string;
@@ -80,4 +81,7 @@ export class User extends Model<User, UserCreationAttrs> {
 
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];
+
+  @HasOne(() => Cart)
+  cart: Cart;
 }

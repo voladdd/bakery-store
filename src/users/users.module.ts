@@ -1,3 +1,5 @@
+import { CartsModule } from './../carts/carts.module';
+import { Cart } from './../carts/carts.model';
 import { AuthModule } from './../auth/auth.module';
 import { RolesModule } from './../roles/roles.module';
 import { UserRoles } from 'src/roles/user-roles.model';
@@ -12,8 +14,9 @@ import { User } from './users.model';
   controllers: [UsersController],
   providers: [UsersService],
   imports: [
-    SequelizeModule.forFeature([User, Role, UserRoles]),
+    SequelizeModule.forFeature([User, Role, UserRoles, Cart]),
     RolesModule,
+    CartsModule,
     forwardRef(() => AuthModule),
   ],
   exports: [UsersService],
