@@ -1,3 +1,4 @@
+import { Cart } from 'src/carts/carts.model';
 import { ProductCategories } from './product-categories.model';
 import { Category } from './categories/categories.model';
 import { ApiProperty } from '@nestjs/swagger';
@@ -8,6 +9,7 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
+import { CartProducts } from 'src/carts/cart-products.model';
 
 interface ProductCreationAttrs {
   title: string;
@@ -62,4 +64,7 @@ export class Product extends Model<Product, ProductCreationAttrs> {
 
   @BelongsToMany(() => Category, () => ProductCategories)
   categories: Category[];
+
+  @BelongsToMany(() => Cart, () => CartProducts)
+  carts: Cart[];
 }

@@ -1,3 +1,4 @@
+import { CartProducts } from 'src/carts/cart-products.model';
 import { Cart } from './carts/carts.model';
 import { ProductCategories } from './products/product-categories.model';
 import { Category } from './products/categories/categories.model';
@@ -43,6 +44,7 @@ import * as path from 'path';
         Category,
         ProductCategories,
         Cart,
+        CartProducts,
       ],
       autoLoadModels: true,
     }),

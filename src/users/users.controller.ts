@@ -19,6 +19,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Roles } from 'src/auth/roles-auth.decorator';
+import { CreateCartDto } from 'src/carts/dto/create-cart.dto';
 
 @ApiTags('Пользователи')
 @Controller('users')
@@ -27,6 +28,7 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Создание пользователя' })
   @ApiResponse({ status: 200, type: User })
+  @ApiBearerAuth('JWT-auth')
   @Roles('Admin')
   @UseGuards(RolesGuard)
   @UsePipes(ValidationPipe)
@@ -47,10 +49,22 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Выдать роль' })
   @ApiResponse({ status: 200 })
+  @ApiBearerAuth('JWT-auth')
   @Roles('Admin')
   @UseGuards(RolesGuard)
   @Post('/role')
   addRole(@Body() dto: AddRoleDto) {
     return this.usersService.addRole(dto);
+  }
+
+  @ApiOperation({ summary: 'Создать и закрепить за пользователем корзину' })
+  @ApiResponse({ status: 200 })
+  @ApiBearerAuth('JWT-auth')
+  @Roles('Admin')
+  @UseGuards(RolesGuard)
+  @UsePipes(ValidationPipe)
+  @Post('/cart')
+  addCart(@Body() dto: CreateCartDto) {
+    return this.usersService.addCart(dto);
   }
 }

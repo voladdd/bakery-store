@@ -8,10 +8,12 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './users.model';
+import { Cart } from 'src/carts/carts.model';
 
 @Injectable()
 export class UsersService {
   constructor(
+    @InjectModel(Cart) private cartRepository: typeof Cart,
     @InjectModel(User) private userRepository: typeof User,
     private roleService: RolesService,
     private cartService: CartsService,
@@ -30,7 +32,7 @@ export class UsersService {
 
   async getAllUsers() {
     const users = await this.userRepository.findAll({
-      include: Role,
+      include: [Role, Cart],
     });
     return users;
   }
@@ -56,5 +58,18 @@ export class UsersService {
     );
   }
 
-  //removeRole
+  async addCart(dto: CreateCartDto) {
+    const user = await this.userRepository.findByPk(dto.userId);
+    const cart = await this.cartService.CreateCart(new CreateCartDto(user.id));
+    if (user && cart) {
+      await user.$set('cart', cart.id);
+      return dto;
+    }
+    throw new HttpException('Пользователь не найден', HttpStatus.NOT_FOUND);
+  }
+
+  // async getCart() {
+  //   const cart = await this.cartRepository.find);
+  //   return cart;
+  // }
 }

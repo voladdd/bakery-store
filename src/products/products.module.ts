@@ -1,3 +1,6 @@
+import { CartProducts } from 'src/carts/cart-products.model';
+// import { CartsModule } from './../carts/carts.module';
+import { Cart } from 'src/carts/carts.model';
 import { ProductCategories } from './product-categories.model';
 import { Category } from './categories/categories.model';
 import { FilesModule } from './../files/files.module';
@@ -8,14 +11,22 @@ import { Product } from './products.model';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { CategoriesService } from './categories/categories.service';
 import { CategoriesModule } from './categories/categories.module';
+import { CartsModule } from 'src/carts/carts.module';
 
 @Module({
   providers: [ProductsService, CategoriesService],
   controllers: [ProductsController],
   imports: [
-    SequelizeModule.forFeature([Product, Category, ProductCategories]),
+    SequelizeModule.forFeature([
+      Product,
+      Category,
+      ProductCategories,
+      Cart,
+      CartProducts,
+    ]),
     FilesModule,
     CategoriesModule,
+    CartsModule,
   ],
   exports: [ProductsService],
 })
