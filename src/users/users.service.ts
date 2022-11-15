@@ -30,6 +30,13 @@ export class UsersService {
     return user;
   }
 
+  async deleteUserById(userId: number) {
+    const deletedRows = await this.userRepository.destroy({
+      where: { id: userId },
+    });
+    return deletedRows;
+  }
+
   async getAllUsers() {
     const users = await this.userRepository.findAll({
       include: [Role, Cart],
@@ -68,8 +75,11 @@ export class UsersService {
     throw new HttpException('Пользователь не найден', HttpStatus.NOT_FOUND);
   }
 
-  // async getCart() {
-  //   const cart = await this.cartRepository.find);
-  //   return cart;
-  // }
+  async getCart(user: User) {
+    const cart = await this.cartService.getCartByUserId(user.id);
+    if (cart) {
+      return cart;
+    }
+    throw new HttpException('Корзина не найдена', HttpStatus.NOT_FOUND);
+  }
 }
