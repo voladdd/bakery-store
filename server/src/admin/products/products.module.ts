@@ -1,3 +1,4 @@
+import { AuthModule } from 'src/auth/auth.module';
 import { CartProducts } from '../carts/cart-products.model';
 // import { CartsModule } from './../carts/carts.module';
 import { Cart } from '../carts/carts.model';
@@ -27,6 +28,7 @@ import { CartsModule } from '../carts/carts.module';
     FilesModule,
     CategoriesModule,
     CartsModule,
+    AuthModule,
   ],
   exports: [ProductsService],
 })

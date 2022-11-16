@@ -4,7 +4,6 @@ import { RolesGuard } from 'src/auth/roles.guard';
 import { User } from './users.model';
 import { UsersService } from './users.service';
 import {
-  Request,
   Body,
   Controller,
   Get,
@@ -22,10 +21,8 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Roles } from 'src/auth/roles-auth.decorator';
-import { CreateCartDto } from '../carts/dto/create-cart.dto';
-import { DeleteUserDto } from './dto/delete-user.dto';
 
-@ApiTags('Admin')
+@ApiTags('Admin/Users')
 @ApiBearerAuth('JWT-auth')
 @Roles('Admin')
 @UseGuards(RolesGuard)

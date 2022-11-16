@@ -11,21 +11,32 @@ import {
   Param,
   Post,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { CreateProductDto } from './dto/create-product.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Roles } from 'src/auth/roles-auth.decorator';
+import { RolesGuard } from 'src/auth/roles.guard';
 
-@ApiTags('Продукты')
-@Controller('products')
+@ApiTags('Admin/Products')
+@ApiBearerAuth('JWT-auth')
+@Roles('Admin')
+@UseGuards(RolesGuard)
+@Controller('admin/products')
 export class ProductsController {
   constructor(
     private productService: ProductsService,
     private categoryService: CategoriesService,
   ) {}
 
-  @ApiOperation({ summary: 'Создание продукта' })
+  @ApiOperation({ summary: 'Create product' })
   @ApiResponse({ status: 200, type: Product })
   @Post()
   @UseInterceptors(FileInterceptor('image'))
@@ -33,38 +44,38 @@ export class ProductsController {
     return this.productService.CreateProduct(dto, image);
   }
 
-  @ApiOperation({ summary: 'Получение всех продуктов' })
+  @ApiOperation({ summary: 'Get all products' })
   @ApiResponse({ status: 200, type: [Product] })
   @Get()
   getAll() {
     return this.productService.GetAllProducts();
   }
 
-  @ApiOperation({ summary: 'Получение всех категорий' })
-  @ApiResponse({ status: 200, type: [Category] })
-  @Get('categories')
-  getAllCategories() {
-    return this.categoryService.getAllCategories();
-  }
+  // @ApiOperation({ summary: 'Получение всех категорий' })
+  // @ApiResponse({ status: 200, type: [Category] })
+  // @Get('categories')
+  // getAllCategories() {
+  //   return this.categoryService.getAllCategories();
+  // }
 
-  @ApiOperation({ summary: 'Создание категории' })
-  @ApiResponse({ status: 200, type: Category })
-  @Post('categories')
-  createCategory(@Body() dto: CreateCategoryDto) {
-    return this.categoryService.CreateCategory(dto);
-  }
+  // @ApiOperation({ summary: 'Create category' })
+  // @ApiResponse({ status: 200, type: Category })
+  // @Post('categories')
+  // createCategory(@Body() dto: CreateCategoryDto) {
+  //   return this.categoryService.CreateCategory(dto);
+  // }
 
-  @ApiOperation({ summary: 'Выдать категорию' })
-  @ApiResponse({ status: 200 })
-  @Post('category')
-  addCategory(@Body() dto: AddCategoryDto) {
-    return this.productService.addCategory(dto);
-  }
-
-  @ApiOperation({ summary: 'Получение продукта по id' })
+  @ApiOperation({ summary: 'Get product by ID' })
   @ApiResponse({ status: 200, type: Product })
   @Get(':id')
   getById(@Param('id') id: string) {
     return this.productService.getProductById(id);
+  }
+
+  @ApiOperation({ summary: 'Add category to product' })
+  @ApiResponse({ status: 200 })
+  @Post(':id/categories')
+  addCategory(@Param('id') id: string, @Body() dto: AddCategoryDto) {
+    return this.productService.addCategoryToProduct(id, dto);
   }
 }

@@ -37,8 +37,8 @@ export class ProductsService {
     return product;
   }
 
-  async addCategory(dto: AddCategoryDto) {
-    const product = await this.productRepository.findByPk(dto.productId);
+  async addCategoryToProduct(id: string, dto: AddCategoryDto) {
+    const product = await this.productRepository.findByPk(id);
     const category = await this.categoryService.getCategoryByTitle(dto.title);
     if (category && product) {
       await product.$add('category', product.id);
