@@ -1,8 +1,8 @@
-import { AddCategoryDto } from './dto/add-category.dto';
-import { CreateCategoryDto } from './dto/create-category.dto';
-import { Category } from './categories/categories.model';
+import { AddCategoryDto } from '../categories/dto/add-category.dto';
+import { CreateCategoryDto } from '../categories/dto/create-category.dto';
+import { Category } from '../categories/categories.model';
 import { Product } from './products.model';
-import { CategoriesService } from './categories/categories.service';
+import { CategoriesService } from '../categories/categories.service';
 import { ProductsService } from './products.service';
 import {
   Body,

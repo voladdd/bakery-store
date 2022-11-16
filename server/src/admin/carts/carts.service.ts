@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Product } from 'src/products/products.model';
+import { Product } from '../products/products.model';
 import { Cart } from './carts.model';
 import { AddProductDto } from './dto/add-product.dto';
 import { CreateCartDto } from './dto/create-cart.dto';

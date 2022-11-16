@@ -1,7 +1,7 @@
-import { Category } from './categories/categories.model';
-import { AddCategoryDto } from './dto/add-category.dto';
-import { CategoriesService } from './categories/categories.service';
-import { FilesService } from './../files/files.service';
+import { Category } from '../categories/categories.model';
+import { AddCategoryDto } from '../categories/dto/add-category.dto';
+import { CategoriesService } from '../categories/categories.service';
+import { FilesService } from 'src/files/files.service';
 import { Product } from './products.model';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';

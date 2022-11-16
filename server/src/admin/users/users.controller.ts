@@ -1,6 +1,6 @@
-import { ValidationPipe } from './../pipes/validation.pipe';
+import { ValidationPipe } from 'src/pipes/validation.pipe';
 import { AddRoleDto } from './dto/add-role.dto';
-import { RolesGuard } from './../auth/roles.guard';
+import { RolesGuard } from 'src/auth/roles.guard';
 import { User } from './users.model';
 import { UsersService } from './users.service';
 import {
@@ -21,7 +21,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Roles } from 'src/auth/roles-auth.decorator';
-import { CreateCartDto } from 'src/carts/dto/create-cart.dto';
+import { CreateCartDto } from '../carts/dto/create-cart.dto';
 import { DeleteUserDto } from './dto/delete-user.dto';
 
 @ApiTags('Пользователи')

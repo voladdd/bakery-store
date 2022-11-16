@@ -5,7 +5,7 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { Product } from 'src/products/products.model';
+import { Product } from '../products/products.model';
 import { Cart } from './carts.model';
 
 @Table({ tableName: 'cart_products', createdAt: false, updatedAt: false })

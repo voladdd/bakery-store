@@ -1,4 +1,4 @@
-import { UsersModule } from './../users/users.module';
+import { UsersModule } from 'src/admin/users/users.module';
 import { forwardRef, Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';

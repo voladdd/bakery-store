@@ -8,7 +8,7 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './users.model';
-import { Cart } from 'src/carts/carts.model';
+import { Cart } from '../carts/carts.model';
 
 @Injectable()
 export class UsersService {

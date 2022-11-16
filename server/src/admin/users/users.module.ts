@@ -1,8 +1,8 @@
 import { CartsModule } from './../carts/carts.module';
 import { Cart } from './../carts/carts.model';
-import { AuthModule } from './../auth/auth.module';
+import { AuthModule } from 'src/auth/auth.module';
 import { RolesModule } from './../roles/roles.module';
-import { UserRoles } from 'src/roles/user-roles.model';
+import { UserRoles } from '../roles/user-roles.model';
 import { Role } from '../roles/roles.model';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { forwardRef, Module } from '@nestjs/common';

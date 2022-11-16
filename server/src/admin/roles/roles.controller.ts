@@ -8,7 +8,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { Roles } from 'src/auth/roles-auth.decorator';
-import { RolesGuard } from './../auth/roles.guard';
+import { RolesGuard } from 'src/auth/roles.guard';
 import { Role } from './roles.model';
 
 @ApiTags('Роли')

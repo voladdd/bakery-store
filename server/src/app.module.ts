@@ -1,22 +1,22 @@
-import { CartProducts } from 'src/carts/cart-products.model';
-import { Cart } from './carts/carts.model';
-import { ProductCategories } from './products/product-categories.model';
-import { Category } from './products/categories/categories.model';
-import { CategoriesModule } from './products/categories/categories.module';
-import { Product } from './products/products.model';
-import { UserRoles } from 'src/roles/user-roles.model';
+import { CartProducts } from './admin/carts/cart-products.model';
+import { Cart } from './admin/carts/carts.model';
+import { ProductCategories } from './admin/products/product-categories.model';
+import { Category } from './admin/categories/categories.model';
+import { CategoriesModule } from './admin/categories/categories.module';
+import { Product } from './admin/products/products.model';
+import { UserRoles } from './admin/roles/user-roles.model';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { User } from './users/users.model';
-import { UsersModule } from './users/users.module';
-import { RolesModule } from './roles/roles.module';
-import { Role } from './roles/roles.model';
+import { User } from './admin/users/users.model';
+import { UsersModule } from './admin/users/users.module';
+import { RolesModule } from './admin/roles/roles.module';
+import { Role } from './admin/roles/roles.model';
 import { AuthModule } from './auth/auth.module';
-import { ProductsModule } from './products/products.module';
+import { ProductsModule } from './admin/products/products.module';
 import { FilesModule } from './files/files.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { CartsModule } from './carts/carts.module';
+import { CartsModule } from './admin/carts/carts.module';
 import * as path from 'path';
 
 @Module({

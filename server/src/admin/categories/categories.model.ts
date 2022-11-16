@@ -1,4 +1,4 @@
-import { Product } from './../products.model';
+import { Product } from '../products/products.model';
 import { ApiProperty } from '@nestjs/swagger';
 import {
   BelongsToMany,
@@ -7,7 +7,7 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { ProductCategories } from '../product-categories.model';
+import { ProductCategories } from '../products/product-categories.model';
 
 interface CategoryCreationAttrs {
   title: string;

@@ -8,8 +8,8 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { UserRoles } from 'src/roles/user-roles.model';
-import { Cart } from 'src/carts/carts.model';
+import { UserRoles } from '../roles/user-roles.model';
+import { Cart } from '../carts/carts.model';
 
 interface UserCreationAttrs {
   email: string;

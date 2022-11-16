@@ -1,6 +1,6 @@
-import { Cart } from 'src/carts/carts.model';
+import { Cart } from '../carts/carts.model';
 import { ProductCategories } from './product-categories.model';
-import { Category } from './categories/categories.model';
+import { Category } from '../categories/categories.model';
 import { ApiProperty } from '@nestjs/swagger';
 import {
   BelongsToMany,
@@ -9,7 +9,7 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { CartProducts } from 'src/carts/cart-products.model';
+import { CartProducts } from '../carts/cart-products.model';
 
 interface ProductCreationAttrs {
   title: string;

@@ -8,7 +8,7 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { Product } from 'src/products/products.model';
+import { Product } from '../products/products.model';
 import { CartProducts } from './cart-products.model';
 
 interface CartCreationAttrs {

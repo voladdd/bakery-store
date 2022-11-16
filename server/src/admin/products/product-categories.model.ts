@@ -1,5 +1,5 @@
 import { Product } from './products.model';
-import { Category } from './categories/categories.model';
+import { Category } from '../categories/categories.model';
 import {
   Column,
   DataType,
