@@ -16,7 +16,7 @@ class Token {
   token: string;
 }
 
-@ApiTags('Авторизация')
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}

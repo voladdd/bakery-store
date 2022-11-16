@@ -29,7 +29,7 @@ export class ProductsService {
     return product;
   }
 
-  async getProductById(id: string) {
+  async getProductById(id: number) {
     const product = await this.productRepository.findOne({
       where: { id },
       include: Category,
@@ -37,7 +37,7 @@ export class ProductsService {
     return product;
   }
 
-  async addCategoryToProduct(id: string, dto: AddCategoryDto) {
+  async addCategoryToProduct(id: number, dto: AddCategoryDto) {
     const product = await this.productRepository.findByPk(id);
     const category = await this.categoryService.getCategoryByTitle(dto.title);
     if (category && product) {

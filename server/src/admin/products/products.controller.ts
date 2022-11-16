@@ -1,6 +1,6 @@
 import { AddCategoryDto } from '../categories/dto/add-category.dto';
-import { CreateCategoryDto } from '../categories/dto/create-category.dto';
-import { Category } from '../categories/categories.model';
+// import { CreateCategoryDto } from '../categories/dto/create-category.dto';
+// import { Category } from '../categories/categories.model';
 import { Product } from './products.model';
 import { CategoriesService } from '../categories/categories.service';
 import { ProductsService } from './products.service';
@@ -31,10 +31,7 @@ import { RolesGuard } from 'src/auth/roles.guard';
 @UseGuards(RolesGuard)
 @Controller('admin/products')
 export class ProductsController {
-  constructor(
-    private productService: ProductsService,
-    private categoryService: CategoriesService,
-  ) {}
+  constructor(private productService: ProductsService) {}
 
   @ApiOperation({ summary: 'Create product' })
   @ApiResponse({ status: 200, type: Product })
@@ -68,14 +65,14 @@ export class ProductsController {
   @ApiOperation({ summary: 'Get product by ID' })
   @ApiResponse({ status: 200, type: Product })
   @Get(':id')
-  getById(@Param('id') id: string) {
+  getById(@Param('id') id: number) {
     return this.productService.getProductById(id);
   }
 
   @ApiOperation({ summary: 'Add category to product' })
   @ApiResponse({ status: 200 })
   @Post(':id/categories')
-  addCategory(@Param('id') id: string, @Body() dto: AddCategoryDto) {
+  addCategory(@Param('id') id: number, @Body() dto: AddCategoryDto) {
     return this.productService.addCategoryToProduct(id, dto);
   }
 }

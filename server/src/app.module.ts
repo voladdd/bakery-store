@@ -17,10 +17,12 @@ import { ProductsModule } from './admin/products/products.module';
 import { FilesModule } from './files/files.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { CartsModule } from './admin/carts/carts.module';
+import { CartModule } from './user/cart/cart.module';
+import { ProductsController } from './user/products/products.controller';
 import * as path from 'path';
 
 @Module({
-  controllers: [],
+  controllers: [ProductsController],
   providers: [],
   imports: [
     ServeStaticModule.forRoot({
@@ -55,6 +57,7 @@ import * as path from 'path';
     CartsModule,
     AuthModule,
     FilesModule,
+    CartModule,
   ],
 })
 export class AppModule {}

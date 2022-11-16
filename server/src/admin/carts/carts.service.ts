@@ -30,12 +30,25 @@ export class CartsService {
     return cart;
   }
 
-  async addProduct(dto: AddProductDto) {
-    const cart = await this.getCartByUserId(dto.userId);
-    const product = await this.productRepository.findByPk(dto.productId);
+  async addProduct(userId: number, productId: number) {
+    const cart = await this.getCartByUserId(userId);
+    const product = await this.productRepository.findByPk(productId);
     if (cart && product) {
       await cart.$add('product', product.id);
-      return dto;
+      return product;
+    }
+    throw new HttpException(
+      'Корзина или продукт не найдены',
+      HttpStatus.NOT_FOUND,
+    );
+  }
+
+  async removeProduct(userId: number, productId: number) {
+    const cart = await this.getCartByUserId(userId);
+    const product = await this.productRepository.findByPk(productId);
+    if (cart && product) {
+      await cart.$remove('product', product.id);
+      return `${product.title} removed`;
     }
     throw new HttpException(
       'Корзина или продукт не найдены',

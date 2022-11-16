@@ -73,13 +73,6 @@ export class UsersController {
     return this.usersService.getUserRoles(id);
   }
 
-  // @ApiOperation({ summary: 'Get user cart' })
-  // @ApiResponse({ status: 200 })
-  // @Get('/cart')
-  // getCart(@Request() req) {
-  //   return this.usersService.getCart(req.user);
-  // }
-
   // @ApiOperation({ summary: 'Create and set cart to user' })
   // @ApiResponse({ status: 200 })
   // @Post('/cart')
