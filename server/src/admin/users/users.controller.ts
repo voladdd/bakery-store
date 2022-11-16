@@ -25,7 +25,7 @@ import { CreateCartDto } from '../carts/dto/create-cart.dto';
 import { DeleteUserDto } from './dto/delete-user.dto';
 
 @ApiTags('Пользователи')
-@Controller('users')
+@Controller()
 export class UsersController {
   constructor(private usersService: UsersService) {}
 

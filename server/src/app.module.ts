@@ -5,7 +5,7 @@ import { Category } from './admin/categories/categories.model';
 import { CategoriesModule } from './admin/categories/categories.module';
 import { Product } from './admin/products/products.model';
 import { UserRoles } from './admin/roles/user-roles.model';
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './admin/users/users.model';
@@ -18,6 +18,7 @@ import { FilesModule } from './files/files.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { CartsModule } from './admin/carts/carts.module';
 import * as path from 'path';
+import { RouterModule } from '@nestjs/core';
 
 @Module({
   controllers: [],
@@ -50,11 +51,22 @@ import * as path from 'path';
     }),
     UsersModule,
     RolesModule,
-    AuthModule,
     ProductsModule,
     CategoriesModule,
-    FilesModule,
     CartsModule,
+    RouterModule.register([
+      {
+        path: 'admin',
+        children: [
+          {
+            path: 'users',
+            module: UsersModule,
+          },
+        ],
+      },
+    ]),
+    AuthModule,
+    FilesModule,
   ],
 })
 export class AppModule {}
