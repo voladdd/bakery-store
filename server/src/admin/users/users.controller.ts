@@ -12,6 +12,7 @@ import {
   UseGuards,
   UsePipes,
   Delete,
+  Param,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import {
@@ -24,67 +25,75 @@ import { Roles } from 'src/auth/roles-auth.decorator';
 import { CreateCartDto } from '../carts/dto/create-cart.dto';
 import { DeleteUserDto } from './dto/delete-user.dto';
 
-@ApiTags('Пользователи')
-@Controller()
+@ApiTags('Admin')
+@ApiBearerAuth('JWT-auth')
+@Roles('Admin')
+@UseGuards(RolesGuard)
+@Controller('admin/users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @ApiOperation({ summary: 'Создание пользователя' })
+  @ApiOperation({ summary: 'Create user' })
   @ApiResponse({ status: 200, type: User })
-  // @ApiBearerAuth('JWT-auth')
-  // @Roles('Admin')
-  // @UseGuards(RolesGuard)
   @UsePipes(ValidationPipe)
   @Post()
   create(@Body() userDto: CreateUserDto) {
     return this.usersService.createUser(userDto);
   }
 
-  @ApiOperation({ summary: 'Удаление пользователя' })
-  @ApiResponse({ status: 200, type: Number })
-  @Delete()
-  delete(@Body() userDto: DeleteUserDto) {
-    return this.usersService.deleteUserById(userDto.id);
-  }
-
-  @ApiOperation({ summary: 'Получение всех пользователей' })
+  @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, type: [User] })
-  @ApiBearerAuth('JWT-auth')
-  // @Roles('Admin')
-  // @UseGuards(RolesGuard)
   @Get()
   getAll() {
     return this.usersService.getAllUsers();
   }
 
-  @ApiOperation({ summary: 'Выдать роль' })
-  @ApiResponse({ status: 200 })
-  @ApiBearerAuth('JWT-auth')
-  // @Roles('Admin')
-  // @UseGuards(RolesGuard)
-  @Post('/role')
-  addRole(@Body() dto: AddRoleDto) {
-    return this.usersService.addRole(dto);
+  @ApiOperation({ summary: 'Get user' })
+  @ApiResponse({ status: 200, type: User })
+  @Get(':id')
+  getOne(@Param('id') id: string) {
+    return this.usersService.getUserById(id);
   }
 
-  @ApiOperation({ summary: 'Создать и закрепить за пользователем корзину' })
-  @ApiResponse({ status: 200 })
-  @ApiBearerAuth('JWT-auth')
-  @Roles('Admin')
-  @UseGuards(RolesGuard)
-  @UsePipes(ValidationPipe)
-  @Post('/cart')
-  addCart(@Body() dto: CreateCartDto) {
-    return this.usersService.addCart(dto);
+  @ApiOperation({ summary: 'Delete user' })
+  @ApiResponse({ status: 200, type: Number })
+  @Delete(':id')
+  deleteOne(@Param('id') id: string) {
+    return this.usersService.deleteUserById(id);
   }
 
-  @ApiOperation({ summary: 'Получить корзину пользователя' })
+  @ApiOperation({ summary: 'Set role to user' })
   @ApiResponse({ status: 200 })
-  @ApiBearerAuth('JWT-auth')
-  @Roles('User')
-  @UseGuards(RolesGuard)
-  @Get('/cart')
-  getCart(@Request() req) {
-    return this.usersService.getCart(req.user);
+  @Post(':id/roles')
+  addRole(@Param('id') id: string, @Body() dto: AddRoleDto) {
+    return this.usersService.addRole(id, dto);
+  }
+
+  @ApiOperation({ summary: 'Get user roles' })
+  @ApiResponse({ status: 200 })
+  @Get(':id/roles')
+  getRole(@Param('id') id: string) {
+    return this.usersService.getUserRoles(id);
+  }
+
+  // @ApiOperation({ summary: 'Get user cart' })
+  // @ApiResponse({ status: 200 })
+  // @Get('/cart')
+  // getCart(@Request() req) {
+  //   return this.usersService.getCart(req.user);
+  // }
+
+  // @ApiOperation({ summary: 'Create and set cart to user' })
+  // @ApiResponse({ status: 200 })
+  // @Post('/cart')
+  // addCart(@Body() dto: CreateCartDto) {
+  //   return this.usersService.addCart(dto);
+  // }
+
+  @ApiOperation({ summary: 'Get user cart' })
+  @ApiResponse({ status: 200 })
+  @Get(':id/cart')
+  getCart(@Param('id') id: string) {
+    return this.usersService.getCartByUserId(id);
   }
 }

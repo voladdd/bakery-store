@@ -30,11 +30,45 @@ export class UsersService {
     return user;
   }
 
-  async deleteUserById(userId: number) {
+  async getUserById(id: string) {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      include: [Role, Cart],
+    });
+    if (user) {
+      return user;
+    }
+    throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+  }
+
+  async getCartByUserId(id: string) {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      include: Cart,
+    });
+    if (user) {
+      console.log(id);
+      return user.cart;
+    }
+    throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+  }
+
+  async getUserRoles(id: string) {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      include: Role,
+    });
+    if (user) {
+      return user.roles;
+    }
+    throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+  }
+
+  async deleteUserById(userId: string) {
     const deletedRows = await this.userRepository.destroy({
       where: { id: userId },
     });
-    return deletedRows;
+    return `${deletedRows} rows was deleted`;
   }
 
   async getAllUsers() {
@@ -47,13 +81,13 @@ export class UsersService {
   async getUserByEmail(email: string) {
     const user = await this.userRepository.findOne({
       where: { email },
-      include: Role,
+      include: [Role, Cart],
     });
     return user;
   }
 
-  async addRole(dto: AddRoleDto) {
-    const user = await this.userRepository.findByPk(dto.userId);
+  async addRole(id: string, dto: AddRoleDto) {
+    const user = await this.userRepository.findByPk(id);
     const role = await this.roleService.getRoleByValue(dto.value);
     if (role && user) {
       await user.$add('role', role.id);
