@@ -29,4 +29,14 @@ export class CartProducts extends Model<CartProducts> {
     type: DataType.INTEGER,
   })
   productId: number;
+
+  @Column({
+    type: DataType.INTEGER,
+    unique: false,
+    defaultValue: 1,
+    validate: {
+      min: 0,
+    },
+  })
+  quantity: number;
 }

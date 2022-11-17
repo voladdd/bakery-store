@@ -1,3 +1,5 @@
+import { UpdateCartProdcutsDto } from './dto/update-cartProducts.dto';
+import { CartProducts } from './../../admin/carts/cart-products.model';
 import {
   Controller,
   Get,
@@ -6,6 +8,8 @@ import {
   Post,
   Request,
   Delete,
+  Patch,
+  Body,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -45,10 +49,25 @@ export class ProductsController {
   }
 
   @ApiOperation({ summary: 'Add product to cart' })
-  @ApiResponse({ status: 200, type: Product })
+  @ApiResponse({ status: 200 })
   @Post(':id/cart')
   addToCart(@Request() req, @Param('id') id: number) {
     return this.cartsService.addProduct(req.user.id, id);
+  }
+
+  @ApiOperation({ summary: 'Add product to cart' })
+  @ApiResponse({ status: 200 })
+  @Patch(':id/cart')
+  updateCartProductQuantity(
+    @Request() req,
+    @Param('id') productId: number,
+    @Body() dto: UpdateCartProdcutsDto,
+  ) {
+    return this.cartsService.updateCartProductQuantity(
+      req.user.id,
+      productId,
+      dto.quantity,
+    );
   }
 
   @ApiOperation({ summary: 'Add product to cart' })
