@@ -59,8 +59,13 @@ export class Product extends Model<Product, ProductCreationAttrs> {
 
   @Column({
     type: DataType.INTEGER,
+    allowNull: false,
+    defaultValue: 1,
+    validate: {
+      min: 0,
+    },
   })
-  rating: number;
+  price: number;
 
   @BelongsToMany(() => Category, () => ProductCategories)
   categories: Category[];

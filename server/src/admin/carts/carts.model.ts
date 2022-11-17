@@ -1,15 +1,18 @@
 import { User } from './../users/users.model';
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  BelongsTo,
   BelongsToMany,
   Column,
   DataType,
   ForeignKey,
+  HasOne,
   Model,
   Table,
 } from 'sequelize-typescript';
 import { Product } from '../products/products.model';
 import { CartProducts } from './cart-products.model';
+import { Order } from '../orders/orders.model';
 
 interface CartCreationAttrs {
   userId: number;
@@ -41,4 +44,7 @@ export class Cart extends Model<Cart, CartCreationAttrs> {
 
   @BelongsToMany(() => Product, () => CartProducts)
   products: Product[];
+
+  @HasOne(() => Order)
+  order: Order;
 }

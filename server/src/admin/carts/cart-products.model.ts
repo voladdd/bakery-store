@@ -8,7 +8,7 @@ import {
 import { Product } from '../products/products.model';
 import { Cart } from './carts.model';
 
-@Table({ tableName: 'cart_products', createdAt: false, updatedAt: false })
+@Table({ tableName: 'cart_products', createdAt: true, updatedAt: true })
 export class CartProducts extends Model<CartProducts> {
   @Column({
     type: DataType.INTEGER,

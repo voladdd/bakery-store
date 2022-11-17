@@ -3,7 +3,6 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Product } from '../products/products.model';
 import { Cart } from './carts.model';
-import { AddProductDto } from './dto/add-product.dto';
 import { CreateCartDto } from './dto/create-cart.dto';
 
 @Injectable()
@@ -60,7 +59,6 @@ export class CartsService {
       const row = await this.cartProductsRepository.findOne({
         where: { cartId: cart.id, productId },
       });
-      console.log(quantity);
       if (row) {
         await row.update({ quantity });
         return row;
@@ -72,41 +70,6 @@ export class CartsService {
     }
     return;
   }
-
-  // async updateCartProductQuantity(
-  // cartId: number,
-  // productId: number,
-  //   row: CartProducts,
-  //   quantity: number,
-  // ) {
-  //   if (row) {
-  //     await row.update({ quantity });
-  //     return;
-  //   }
-  //   throw new HttpException(
-  //     `Product ${row.productId} was not found at cart ${row.cartId}`,
-  //     HttpStatus.NOT_FOUND,
-  //   );
-  // }
-
-  // async updateCartProductQuantity(
-  //   cartId: number,
-  //   productId: number,
-  //   // row: CartProducts,
-  //   quantity: number,
-  // ) {
-  //   const row = await this.cartProductsRepository.findOne({
-  //     where: { cartId, productId },
-  //   });
-  //   if (row) {
-  //     await row.update({ quantity });
-  //     return 1;
-  //   }
-  //   throw new HttpException(
-  //     `Product ${row.productId} was not found at cart ${row.cartId}`,
-  //     HttpStatus.NOT_FOUND,
-  //   );
-  // }
 
   async addProduct(userId: number, productId: number) {
     const cart = await this.getCartByUserId(userId);

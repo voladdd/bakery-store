@@ -1,5 +1,4 @@
 import { UpdateCartProdcutsDto } from './dto/update-cartProducts.dto';
-import { CartProducts } from './../../admin/carts/cart-products.model';
 import {
   Controller,
   Get,

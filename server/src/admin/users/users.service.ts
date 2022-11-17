@@ -47,7 +47,6 @@ export class UsersService {
       include: Cart,
     });
     if (user) {
-      console.log(id);
       return user.cart;
     }
     throw new HttpException('User not found', HttpStatus.NOT_FOUND);

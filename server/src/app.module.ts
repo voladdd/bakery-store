@@ -1,3 +1,4 @@
+import { Order } from './admin/orders/orders.model';
 import { CartProducts } from './admin/carts/cart-products.model';
 import { Cart } from './admin/carts/carts.model';
 import { ProductCategories } from './admin/products/product-categories.model';
@@ -19,6 +20,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { CartsModule } from './admin/carts/carts.module';
 import { CartModule } from './user/cart/cart.module';
 import { ProductsController } from './user/products/products.controller';
+import { OrdersModule } from './admin/orders/orders.module';
 import * as path from 'path';
 
 @Module({
@@ -47,6 +49,7 @@ import * as path from 'path';
         ProductCategories,
         Cart,
         CartProducts,
+        Order,
       ],
       autoLoadModels: true,
     }),
@@ -58,6 +61,7 @@ import * as path from 'path';
     AuthModule,
     FilesModule,
     CartModule,
+    OrdersModule,
   ],
 })
 export class AppModule {}
