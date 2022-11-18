@@ -1,7 +1,6 @@
 import { User } from './../users/users.model';
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  BelongsTo,
   BelongsToMany,
   Column,
   DataType,

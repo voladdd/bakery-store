@@ -54,7 +54,7 @@ export class ProductsController {
     return this.cartsService.addProduct(req.user.id, id);
   }
 
-  @ApiOperation({ summary: 'Add product to cart' })
+  @ApiOperation({ summary: 'Update quantity of product' })
   @ApiResponse({ status: 200 })
   @Patch(':id/cart')
   updateCartProductQuantity(

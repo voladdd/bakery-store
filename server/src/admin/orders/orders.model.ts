@@ -1,7 +1,6 @@
-import { Product } from '../products/products.model';
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  BelongsToMany,
+  BelongsTo,
   Column,
   DataType,
   ForeignKey,
@@ -59,4 +58,7 @@ export class Order extends Model<Order, OrderCreationAttrs> {
     unique: true,
   })
   cartId: number;
+
+  @BelongsTo(() => Cart)
+  cart: Cart;
 }
