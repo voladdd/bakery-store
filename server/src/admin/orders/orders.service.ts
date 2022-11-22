@@ -13,11 +13,22 @@ export class OrdersService {
     @InjectModel(Cart) private cartRepository: typeof Cart,
     private usersService: UsersService,
   ) {}
-  async createOrder(user: any, dto: CreateOrderDto) {
-    const cart = await this.usersService.getCartByUserId(user.id);
+  async createOrder(userId: number, dto: CreateOrderDto) {
+    // const cart = await this.usersService.getCartByUserId(userId.toString());
+    const cart = await this.cartRepository.findOne({
+      where: { userId },
+      order: [['createdAt', 'DESC']],
+    });
     const order = await this.orderRepository.create(dto);
+    if (!(cart || order)) {
+      throw new HttpException(
+        `Cart or Order was not founded`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
     await cart.$set('order', order.id);
     cart.order = order;
+    await this.usersService.addCart({ userId });
     return order;
   }
 
@@ -27,11 +38,14 @@ export class OrdersService {
   }
 
   async getAllUserOrders(userId: number) {
-    const carts = await this.cartRepository.findAll({
+    const cart = await this.cartRepository.findAll({
       where: { userId },
       include: Order,
     });
-    return carts;
+    const orders = cart
+      .map((value) => value.order)
+      .filter((value) => value !== null);
+    return orders;
   }
 
   async getOrderById(id: number) {
@@ -43,11 +57,6 @@ export class OrdersService {
   }
 
   async getOneUserOrder(userId: number, orderId: number) {
-    // where cart.userId = UserId && cart.orderId = orderId
-    // const carts = await this.cartRepository.findOne({
-    //   where: { userId },
-    //   include: Order,
-    // });
     const order = await this.orderRepository.findByPk(orderId, {
       include: [{ model: Cart, include: [Product] }],
     });

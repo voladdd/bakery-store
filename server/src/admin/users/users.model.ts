@@ -4,6 +4,7 @@ import {
   BelongsToMany,
   Column,
   DataType,
+  HasMany,
   HasOne,
   Model,
   Table,
@@ -82,6 +83,6 @@ export class User extends Model<User, UserCreationAttrs> {
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];
 
-  @HasOne(() => Cart)
-  cart: Cart;
+  @HasMany(() => Cart)
+  carts: Cart[];
 }

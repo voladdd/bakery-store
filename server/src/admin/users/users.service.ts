@@ -24,9 +24,9 @@ export class UsersService {
     const role = await this.roleService.getRoleByValue('User');
     const cart = await this.cartService.CreateCart(new CreateCartDto(user.id));
     await user.$set('roles', [role.id]);
-    await user.$set('cart', cart.id);
+    await user.$add('carts', cart.id);
     user.roles = [role];
-    user.cart = cart;
+    user.carts = [cart];
     return user;
   }
 
@@ -47,7 +47,7 @@ export class UsersService {
       include: Cart,
     });
     if (user) {
-      return user.cart;
+      return user.carts;
     }
     throw new HttpException('User not found', HttpStatus.NOT_FOUND);
   }
@@ -102,7 +102,7 @@ export class UsersService {
     const user = await this.userRepository.findByPk(dto.userId);
     const cart = await this.cartService.CreateCart(new CreateCartDto(user.id));
     if (user && cart) {
-      await user.$set('cart', cart.id);
+      await user.$add('cart', cart.id);
       return dto;
     }
     throw new HttpException('Пользователь не найден', HttpStatus.NOT_FOUND);

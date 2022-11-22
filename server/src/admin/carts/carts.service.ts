@@ -23,6 +23,7 @@ export class CartsService {
     const cart = await this.cartRepository.findOne({
       where: { userId },
       include: [Product],
+      order: [['createdAt', 'DESC']],
     });
     return cart;
   }

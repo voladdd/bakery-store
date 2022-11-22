@@ -39,9 +39,9 @@ export class CartController {
   }
 
   @ApiOperation({ summary: 'Create order' })
-  @ApiResponse({ status: 200, type: Order })
+  // @ApiResponse({ status: 200, type: Order })
   @Post('order')
   createOrder(@Request() req, @Body() dto: CreateOrderDto) {
-    return this.ordersService.createOrder(req.user, dto);
+    return this.ordersService.createOrder(req.user.id, dto);
   }
 }

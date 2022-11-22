@@ -1,6 +1,7 @@
 import { User } from './../users/users.model';
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  BelongsTo,
   BelongsToMany,
   Column,
   DataType,
@@ -43,6 +44,9 @@ export class Cart extends Model<Cart, CartCreationAttrs> {
 
   @BelongsToMany(() => Product, () => CartProducts)
   products: Product[];
+
+  @BelongsTo(() => User)
+  user: User;
 
   @HasOne(() => Order)
   order: Order;

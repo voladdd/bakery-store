@@ -73,12 +73,12 @@ export class UsersController {
     return this.usersService.getUserRoles(id);
   }
 
-  // @ApiOperation({ summary: 'Create and set cart to user' })
-  // @ApiResponse({ status: 200 })
-  // @Post('/cart')
-  // addCart(@Body() dto: CreateCartDto) {
-  //   return this.usersService.addCart(dto);
-  // }
+  @ApiOperation({ summary: 'Create and set cart to user' })
+  @ApiResponse({ status: 200 })
+  @Post(':id/cart')
+  addCart(@Param('id') userId: string) {
+    return this.usersService.addCart({ userId: Number(userId) });
+  }
 
   @ApiOperation({ summary: 'Get user cart' })
   @ApiResponse({ status: 200 })
