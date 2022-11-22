@@ -68,7 +68,6 @@ export class CartsService {
         HttpStatus.NOT_FOUND,
       );
     }
-    return;
   }
 
   async addProduct(userId: number, productId: number) {

@@ -6,6 +6,7 @@ import { Cart } from '../carts/carts.model';
 import { Order } from './orders.model';
 import { OrdersService } from './orders.service';
 import { OrdersController } from './orders.controller';
+import { OrdersController as UserOrdersController } from 'src/user/orders/orders.controller';
 import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
@@ -16,6 +17,6 @@ import { AuthModule } from 'src/auth/auth.module';
   ],
   providers: [OrdersService],
   exports: [OrdersService],
-  controllers: [OrdersController],
+  controllers: [OrdersController, UserOrdersController],
 })
 export class OrdersModule {}

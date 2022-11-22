@@ -21,10 +21,11 @@ import { CartsModule } from './admin/carts/carts.module';
 import { CartModule } from './user/cart/cart.module';
 import { ProductsController } from './user/products/products.controller';
 import { OrdersModule } from './admin/orders/orders.module';
+import { OrdersController } from './user/orders/orders.controller';
 import * as path from 'path';
 
 @Module({
-  controllers: [ProductsController],
+  controllers: [],
   providers: [],
   imports: [
     ServeStaticModule.forRoot({

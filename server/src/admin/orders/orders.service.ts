@@ -10,6 +10,7 @@ import { InjectModel } from '@nestjs/sequelize';
 export class OrdersService {
   constructor(
     @InjectModel(Order) private orderRepository: typeof Order,
+    @InjectModel(Cart) private cartRepository: typeof Cart,
     private usersService: UsersService,
   ) {}
   async createOrder(user: any, dto: CreateOrderDto) {
@@ -23,6 +24,14 @@ export class OrdersService {
   async getAllOrders() {
     const orders = await this.orderRepository.findAll({ include: Cart });
     return orders;
+  }
+
+  async getAllUserOrders(userId: number) {
+    const carts = await this.cartRepository.findAll({
+      where: { userId },
+      include: Order,
+    });
+    return carts;
   }
 
   async getOrderById(id: number) {
