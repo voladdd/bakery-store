@@ -42,6 +42,25 @@ export class OrdersService {
     return order;
   }
 
+  async getOneUserOrder(userId: number, orderId: number) {
+    // where cart.userId = UserId && cart.orderId = orderId
+    // const carts = await this.cartRepository.findOne({
+    //   where: { userId },
+    //   include: Order,
+    // });
+    const order = await this.orderRepository.findByPk(orderId, {
+      include: [{ model: Cart, include: [Product] }],
+    });
+    if (!order) {
+      throw new HttpException(`Order was not founded`, HttpStatus.NOT_FOUND);
+    }
+    const cart = await this.cartRepository.findByPk(order.cartId);
+    if (userId === cart.userId) {
+      return order;
+    }
+    throw new HttpException(`Unexpected userId`, HttpStatus.FORBIDDEN);
+  }
+
   async deleteOrderById(id: string) {
     const deletedRows = await this.orderRepository.destroy({
       where: { id },

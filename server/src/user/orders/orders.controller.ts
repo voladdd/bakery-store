@@ -2,6 +2,8 @@ import { Order } from './../../admin/orders/orders.model';
 import { Controller, Get, UseGuards, Request, Param } from '@nestjs/common';
 import {
   ApiBearerAuth,
+  ApiForbiddenResponse,
+  ApiNotFoundResponse,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -27,8 +29,10 @@ export class OrdersController {
 
   @ApiOperation({ summary: 'Get user order' })
   @ApiResponse({ status: 200, type: Order })
+  @ApiNotFoundResponse({ status: 404 })
+  @ApiForbiddenResponse({ status: 403 })
   @Get(':id')
-  getUserOrder(@Param('id') id: number) {
-    return this.ordersService.getOrderById(id);
+  getOneUserOrder(@Request() req, @Param('id') orderId: number) {
+    return this.ordersService.getOneUserOrder(req.user.id, orderId);
   }
 }
