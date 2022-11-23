@@ -11,14 +11,14 @@ import { Roles } from 'src/auth/roles-auth.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { Role } from './roles.model';
 
-@ApiTags('Роли')
+@ApiTags('Admin/Roles')
 @Controller('roles')
 export class RolesController {
   constructor(private roleService: RolesService) {}
 
   @ApiOperation({
-    summary: 'Создание роли',
-    description: 'Только для админа',
+    summary: 'Create role',
+    description: 'Only for admin',
   })
   @ApiResponse({ status: 200, type: Role })
   @ApiBearerAuth('JWT-auth')
@@ -28,8 +28,8 @@ export class RolesController {
   }
 
   @ApiOperation({
-    summary: 'Получение всех ролей',
-    description: 'Только для админа',
+    summary: 'Get all roles',
+    description: 'Only for admin',
   })
   @ApiResponse({ status: 200, type: [Role] })
   @ApiBearerAuth('JWT-auth')
@@ -41,8 +41,8 @@ export class RolesController {
   }
 
   @ApiOperation({
-    summary: 'Получение роли',
-    description: 'Только для админа',
+    summary: 'Get role info',
+    description: 'Only for admin',
   })
   @ApiResponse({ status: 200, type: Role })
   @ApiBearerAuth('JWT-auth')
