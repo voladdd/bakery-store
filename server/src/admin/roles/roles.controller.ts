@@ -12,7 +12,7 @@ import { RolesGuard } from 'src/auth/roles.guard';
 import { Role } from './roles.model';
 
 @ApiTags('Admin/Roles')
-@Controller('roles')
+@Controller('admin/roles')
 export class RolesController {
   constructor(private roleService: RolesService) {}
 
