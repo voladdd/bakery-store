@@ -11,9 +11,9 @@ import { Roles } from 'src/auth/roles-auth.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 
 @ApiTags('User/Categories')
-@ApiBearerAuth('JWT-auth')
-@Roles('User')
-@UseGuards(RolesGuard)
+// @ApiBearerAuth('JWT-auth')
+// @Roles('User')
+// @UseGuards(RolesGuard)
 @Controller('categories')
 export class CategoriesController {
   constructor(private categoriesService: CategoriesService) {}
@@ -21,7 +21,7 @@ export class CategoriesController {
   @ApiOperation({ summary: 'Get categories' })
   @ApiResponse({ status: 200, type: Category })
   @Get()
-  getAllUserOrders() {
+  getAllCategories() {
     return this.categoriesService.getAllCategories();
   }
 }
