@@ -17,11 +17,11 @@ export class ProductsService {
 
   async CreateProduct(dto: CreateProductDto, image: any) {
     const fileName = await this.fileService.createFile(image);
-    const post = await this.productRepository.create({
+    const product = await this.productRepository.create({
       ...dto,
       image: fileName,
     });
-    return post;
+    return product;
   }
 
   async GetAllProducts() {
