@@ -1,6 +1,6 @@
 'use strict';
 
-// make seed npx sequelize-cli seed:generate --name xxx-products.js
+// make seed: npx sequelize-cli db:seed --seed 20221124141109-products.js
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -66,7 +66,7 @@ module.exports = {
           title: 'Эклер в шоколоде',
           description:
             'Эклер — это пирожное из заварного теста, наполненное кремом и покрытое ароматной глазурью.',
-          image: 'chockmaffin.png',
+          image: '6eclair.png',
           price: 68,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -75,7 +75,7 @@ module.exports = {
           title: 'Гляссе',
           description:
             'Гляссе - холодный напиток на основе кофе с добавлением мороженого.',
-          image: 'chockmaffin.png',
+          image: '7glasse.png',
           price: 98,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -84,7 +84,7 @@ module.exports = {
           title: 'Багет чесночный',
           description:
             'Багет из пшеничной муки высшего сорта с ароматной чесночной начинкой и зеленью.',
-          image: 'chockmaffin.png',
+          image: '8garlicbaguette.png',
           price: 169,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -93,7 +93,7 @@ module.exports = {
           title: 'Американо',
           description:
             'Американо — самый распространенный вид кофе. К нему отлично подходят десерты, свежая выпечка, сиропы и мед.',
-          image: 'chockmaffin.png',
+          image: '9americano.png',
           price: 68,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -102,7 +102,7 @@ module.exports = {
           title: 'Булочка с корицей',
           description:
             'Булочка с корицей — это сладкая булочка, которую обычно подают в Северной Европе и Северной Америке.',
-          image: 'chockmaffin.png',
+          image: '10cinnamonbun.png',
           price: 89,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -111,7 +111,7 @@ module.exports = {
           title: 'Хлеб с семечками',
           description:
             'Хлеб ржано-пшеничный с большим количеством семечек подсолнечника с добавлением солода.',
-          image: 'chockmaffin.png',
+          image: '11ryebread.png',
           price: 119,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -120,7 +120,7 @@ module.exports = {
           title: 'Булка',
           description:
             'Булка с маковой начинкой из слоенного теста с сахарной пудрой.',
-          image: 'chockmaffin.png',
+          image: '12justbulochka.png',
           price: 169,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -129,7 +129,7 @@ module.exports = {
           title: 'Хлеб бородинский',
           description:
             'Темно-коричневый ржаной хлеб на закваске русского происхождения, приправленный кориандром и тмином.',
-          image: 'chockmaffin.png',
+          image: '13borodinobread.png',
           price: 199,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -137,7 +137,7 @@ module.exports = {
         {
           title: 'Хлеб Бездрожжевой с тмином',
           description: 'Ржаной бездрожжевой хлеб на закваске с тмином.',
-          image: 'chockmaffin.png',
+          image: '14caraway.png',
           price: 159,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -146,7 +146,7 @@ module.exports = {
           title: 'Багет Парижский',
           description:
             'Багет из пшеничной муки высшего сорта на закваске. Тесто - пышное пористое с выраженной корочкой.',
-          image: 'chockmaffin.png',
+          image: '15baguette.png',
           price: 299,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -155,7 +155,7 @@ module.exports = {
           title: 'Хлеб летний',
           description:
             'Воздушный хлеб из пшеничной муки высшего сорта на растительном масле. Аналог нарезного батона.',
-          image: 'chockmaffin.png',
+          image: '16baton.png',
           price: 99,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -164,7 +164,7 @@ module.exports = {
           title: 'Хлеб подовый бездрожжевой',
           description:
             'Хлеб «серый» пористой структуры из ржаной и пшеничной муки на ржаной закваске.',
-          image: 'chockmaffin.png',
+          image: '17graybread.png',
           price: 129,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -173,7 +173,7 @@ module.exports = {
           title: 'Круассан с малиной',
           description:
             'Слоеный круассан на сливочном масле с малиновой начинкой.',
-          image: 'chockmaffin.png',
+          image: '18croissant.png',
           price: 99,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -182,7 +182,7 @@ module.exports = {
           title: 'Улитка с корицей в шоколаде',
           description:
             'Сдобная булочка с корицей покрытая темным и белым шоколадом.',
-          image: 'chockmaffin.png',
+          image: '19sweetbun.png',
           price: 59,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -191,7 +191,7 @@ module.exports = {
           title: 'Пирог с ветчиной и сыром',
           description:
             'Сдобный пирог из высшего сорта пшнечной муки с большим кол-вом пикантной начинки ветчина-сыр и болгарского перца.',
-          image: 'chockmaffin.png',
+          image: '20hampie.png',
           price: 339,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -199,7 +199,7 @@ module.exports = {
         {
           title: 'Пирог с брусникой и яблоком',
           description: 'Пирог из сдобного теста с бруснично-яблочной начинкой.',
-          image: 'chockmaffin.png',
+          image: '21applepie.png',
           price: 319,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -207,7 +207,7 @@ module.exports = {
         {
           title: 'Штрудель маковый',
           description: 'Рулет из пшеничной муки с начинкой из мака.',
-          image: 'chockmaffin.png',
+          image: '22poppyseedbun.png',
           price: 89,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -216,7 +216,7 @@ module.exports = {
           title: 'Киш с курицей',
           description:
             'В песочной тарталетке запеканка из курицы с зеленью, сливками и сыром.',
-          image: 'chockmaffin.png',
+          image: '23chickentartlets.png',
           price: 169,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -225,7 +225,7 @@ module.exports = {
           title: 'Торт Медово-сливочный',
           description:
             'Медовый бисквит с прослойкой из сметанного крема с добавлением апельсинового конфитюра.',
-          image: 'chockmaffin.png',
+          image: '24honeycake.png',
           price: 99,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -234,7 +234,7 @@ module.exports = {
           title: 'Донат фисташковый с начинкой',
           description:
             'Сдобный пончик из пшеничной муки, с начинкой из фисташкового крема. Украшен глазурью из тёмного шоколада и орехами.',
-          image: 'chockmaffin.png',
+          image: '25pistachiodonut.png',
           price: 39,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -243,7 +243,7 @@ module.exports = {
           title: 'Тарталетка ягодная постная',
           description:
             'Тарталетка из песочного теста с начинкой из малинового джема и нежного крема на растительной основе , украшенная ягодами голубики и малины. Подходит в пост.',
-          image: 'chockmaffin.png',
+          image: '26berryсreamtartlet.png',
           price: 79,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -252,7 +252,7 @@ module.exports = {
           title: 'Напиток Клюква Можжевельник',
           description:
             'Горячий напиток из ягод клюквы и можжевельника, в основе которого лежит запах смолы, с примесями дыма, терпкости, пряностей и луговых трав.',
-          image: 'chockmaffin.png',
+          image: '27cranberryjuice.png',
           price: 99,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -261,7 +261,7 @@ module.exports = {
           title: 'Напиток Облепиха Имбирь',
           description:
             'Горячий напиток из ягод облепихи, облепихового пюре и измельченного корня имбиря.',
-          image: 'chockmaffin.png',
+          image: '28seabuckthornjuice.png',
           price: 99,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -270,7 +270,7 @@ module.exports = {
           title: 'Пирожное Эклер Манго Маракуйя',
           description:
             'Заварное пирожное с начинкой из сливочно-заварного крема с пюре манго-маракуйя . Украшенное помадкой, кракелином и стружкой белого шоколада',
-          image: 'chockmaffin.png',
+          image: '29mangocake.png',
           price: 39,
           createdAt: new Date(),
           updatedAt: new Date(),
