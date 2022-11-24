@@ -23,9 +23,6 @@ import { ProductsService } from 'src/admin/products/products.service';
 import { CartsService } from 'src/admin/carts/carts.service';
 
 @ApiTags('User/Products')
-@ApiBearerAuth('JWT-auth')
-@Roles('User')
-@UseGuards(RolesGuard)
 @Controller('products')
 export class ProductsController {
   constructor(
@@ -47,6 +44,9 @@ export class ProductsController {
     return this.productService.getProductById(id);
   }
 
+  @Roles('User')
+  @UseGuards(RolesGuard)
+  @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: 'Add product to cart' })
   @ApiResponse({ status: 200 })
   @Post(':id/cart')
@@ -54,6 +54,9 @@ export class ProductsController {
     return this.cartsService.addProduct(req.user.id, id);
   }
 
+  @Roles('User')
+  @UseGuards(RolesGuard)
+  @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: 'Update quantity of product' })
   @ApiResponse({ status: 200 })
   @Patch(':id/cart')
@@ -69,6 +72,9 @@ export class ProductsController {
     );
   }
 
+  @Roles('User')
+  @UseGuards(RolesGuard)
+  @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: 'Add product to cart' })
   @ApiResponse({ status: 200, type: Product })
   @Delete(':id/cart')
