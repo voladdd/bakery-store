@@ -1,7 +1,7 @@
 import Admin from "./pages/Admin";
 import Auth from "./pages/Auth";
 import Cart from "./pages/Cart";
-import Product from "./pages/Product";
+import ProductPage from "./pages/ProductPage";
 import Seller from "./pages/Seller";
 import Shop from "./pages/Shop";
 import {
@@ -49,6 +49,6 @@ export const publicRoutes: IRoutes[] = [
   },
   {
     path: PRODUCT_ROUTE + "/:id",
-    Component: Product,
+    Component: ProductPage,
   },
 ];

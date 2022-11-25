@@ -8,10 +8,10 @@ import ProductStore from "./store/ProductStore";
 
 // const user = new UserStore();
 
-type IContext = {
+interface IContext {
   user: UserStore | null;
   product: ProductStore | null;
-};
+}
 
 export const Context = createContext<IContext>({ user: null, product: null });
 

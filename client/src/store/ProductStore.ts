@@ -5,7 +5,7 @@ interface ICategories {
   title: string;
   description: string;
 }
-interface IProducts {
+export interface IProducts {
   id: number;
   title: string;
   description: string;
@@ -17,15 +17,52 @@ export default class ProductStore {
   //   private _user: {} = {};
   private _categories = [
     { id: 1, title: "Выпечка", description: "desc" },
-    { id: 2, title: "Напитки", description: "desc" },
+    { id: 2, title: "Хлеб", description: "desc" },
+    { id: 3, title: "Напитки", description: "desc" },
   ];
   private _products = [
-    { id: 1, title: "a", description: "desc", image: "", price: 200 },
-    { id: 2, title: "b", description: "desc", image: "", price: 200 },
-    { id: 3, title: "c", description: "desc", image: "", price: 200 },
-    { id: 4, title: "d", description: "desc", image: "", price: 200 },
-    { id: 5, title: "e", description: "desc", image: "", price: 200 },
+    {
+      id: 1,
+      title: "a",
+      description: "desc",
+      image:
+        "https://static.onecms.io/wp-content/uploads/sites/19/2011/04/08/chocolate-chip-muffins-ck-2000.jpg",
+      price: 200,
+    },
+    {
+      id: 2,
+      title: "b",
+      description: "desc",
+      image:
+        "https://static.onecms.io/wp-content/uploads/sites/19/2011/04/08/chocolate-chip-muffins-ck-2000.jpg",
+      price: 200,
+    },
+    {
+      id: 3,
+      title: "c",
+      description: "desc",
+      image:
+        "https://static.onecms.io/wp-content/uploads/sites/19/2011/04/08/chocolate-chip-muffins-ck-2000.jpg",
+      price: 200,
+    },
+    {
+      id: 4,
+      title: "d",
+      description: "desc",
+      image:
+        "https://static.onecms.io/wp-content/uploads/sites/19/2011/04/08/chocolate-chip-muffins-ck-2000.jpg",
+      price: 200,
+    },
+    {
+      id: 5,
+      title: "e",
+      description: "desc",
+      image:
+        "https://static.onecms.io/wp-content/uploads/sites/19/2011/04/08/chocolate-chip-muffins-ck-2000.jpg",
+      price: 200,
+    },
   ];
+  private _seletedCategory: ICategories = { id: 0, title: "", description: "" };
   constructor() {
     makeAutoObservable(this);
   }
@@ -35,7 +72,12 @@ export default class ProductStore {
   setProducts(products: IProducts[]) {
     this._products = products;
   }
-
+  setSelectedCategory(category: ICategories) {
+    this._seletedCategory = category;
+  }
+  get selectedCategory(): ICategories {
+    return this._seletedCategory;
+  }
   get categories() {
     return this._categories;
   }
