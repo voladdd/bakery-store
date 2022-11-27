@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { Context } from "..";
 import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from "../utils/consts";
 import { useNavigate } from "react-router-dom";
+import { Roles } from "../store/UserStore";
 
 const NavBar = observer(() => {
   const { user } = useContext(Context);
@@ -23,12 +24,14 @@ const NavBar = observer(() => {
         </NavLink>
         {user!.isAuth ? (
           <Nav className="ml-auto" style={{ color: "white" }}>
-            <Button
-              variant={"outline-light"}
-              onClick={() => navigate(ADMIN_ROUTE)}
-            >
-              Панель админа
-            </Button>
+            {user?.userRoles.includes(Roles.Admin) ? (
+              <Button
+                variant={"outline-light"}
+                onClick={() => navigate(ADMIN_ROUTE)}
+              >
+                Панель админа
+              </Button>
+            ) : null}
             <Button variant={"outline-light"} onClick={() => logOut()}>
               Выйти
             </Button>

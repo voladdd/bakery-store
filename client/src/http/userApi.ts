@@ -1,5 +1,6 @@
 import { $authHost, $host } from ".";
 import jwtDecode from "jwt-decode";
+import { Roles } from "../store/UserStore";
 
 export const registration = async (email: string, password: string) => {
   const { data } = await $host.post("/auth/registration", { email, password });
@@ -9,13 +10,19 @@ export const registration = async (email: string, password: string) => {
 export const login = async (email: string, password: string) => {
   const { data } = await $host.post("/auth/login", { email, password });
   localStorage.setItem("token", data.token);
-  console.log(localStorage.getItem("token"));
+  // console.log(localStorage.getItem("token"));
   return jwtDecode(data.token);
 };
 
-export const check = async () => {
-  // const { data } = await $authHost.post("/auth/login");
-  // localStorage.setItem("token", data.token);
-  // return jwtDecode(data.token);
-  return true;
+export const checkRoles = async (): Promise<Roles[]> => {
+  const token = localStorage.getItem("token");
+  const userRoles: Roles[] = [];
+  if (token) {
+    const { roles }: any = jwtDecode(token);
+    roles.forEach((role: any) => {
+      console.log(role.value);
+      userRoles.push(Roles[role.value as Roles]);
+    });
+  }
+  return userRoles;
 };

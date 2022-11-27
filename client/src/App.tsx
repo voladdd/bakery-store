@@ -6,17 +6,18 @@ import { Context } from ".";
 import "./App.css";
 import AppRouter from "./components/AppRouter";
 import NavBar from "./components/NavBar";
-import { check } from "./http/userApi";
+import { checkRoles } from "./http/userApi";
 
 const App = observer(() => {
   const { user } = useContext(Context);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    check()
+    checkRoles()
       .then((data) => {
-        user?.setUser(true);
+        user?.setUser(user);
         user?.setIsAuth(true);
+        user?.setUserRoles(data);
       })
       .finally(() => setLoading(false));
   }, []);

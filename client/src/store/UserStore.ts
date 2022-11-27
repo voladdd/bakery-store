@@ -1,14 +1,14 @@
 import { makeAutoObservable } from "mobx";
 
 export enum Roles {
-  User,
-  Admin,
-  Seller,
+  User = "User",
+  Admin = "Admin",
+  Seller = "Seller",
 }
 
 export default class UserStore {
   private _isAuth: boolean = false;
-  private _userRole: Roles = Roles.User;
+  private _userRoles: Roles[] = [];
   private _user: {} = {};
   constructor() {
     makeAutoObservable(this);
@@ -22,8 +22,9 @@ export default class UserStore {
     this._user = user;
   }
 
-  setUserRole(role: Roles) {
-    this._userRole = role;
+  setUserRoles(roles: Roles[]) {
+    console.log(this._userRoles);
+    this._userRoles = roles;
   }
 
   get isAuth() {
@@ -32,7 +33,7 @@ export default class UserStore {
   get user() {
     return this._user;
   }
-  get userRole() {
-    return this._userRole;
+  get userRoles() {
+    return this._userRoles;
   }
 }

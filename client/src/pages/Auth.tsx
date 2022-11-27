@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { Button, Card, Container, Form, Row } from "react-bootstrap";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Context } from "..";
-import { login, registration } from "../http/userApi";
+import { checkRoles, login, registration } from "../http/userApi";
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/consts";
 
 const Auth = observer(() => {
@@ -24,6 +24,10 @@ const Auth = observer(() => {
       }
       user?.setUser(user);
       user?.setIsAuth(true);
+      checkRoles().then((roles) => {
+        user?.setUserRoles(roles);
+      });
+      //setroles
       navigate(SHOP_ROUTE);
     } catch (error) {
       let message;
