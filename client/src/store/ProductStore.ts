@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-interface ICategories {
+export interface ICategories {
   id: number;
   title: string;
   description: string;
@@ -13,13 +13,7 @@ export interface IProducts {
   price: number;
 }
 export default class ProductStore {
-  //   private _isAuth: boolean = false;
-  //   private _user: {} = {};
-  private _categories = [
-    { id: 1, title: "Выпечка", description: "desc" },
-    { id: 2, title: "Хлеб", description: "desc" },
-    { id: 3, title: "Напитки", description: "desc" },
-  ];
+  private _categories: ICategories[] = [];
   private _products = [
     {
       id: 1,

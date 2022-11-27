@@ -1,9 +1,20 @@
-import React from "react";
+import { observer } from "mobx-react-lite";
+import React, { useContext, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { Context } from "..";
 import CategoriesBar from "../components/CategoriesBar";
 import ProductsList from "../components/ProductsList";
+import { fetchCategories } from "../http/productApi";
 
-const Shop = () => {
+const Shop = observer(() => {
+  const { product } = useContext(Context);
+
+  useEffect(() => {
+    fetchCategories().then((data) => {
+      product?.setCategories(data);
+    });
+  }, []);
+
   return (
     <Container>
       <Row className="mt-2">
@@ -16,6 +27,6 @@ const Shop = () => {
       </Row>
     </Container>
   );
-};
+});
 
 export default Shop;
