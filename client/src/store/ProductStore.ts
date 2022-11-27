@@ -14,48 +14,7 @@ export interface IProducts {
 }
 export default class ProductStore {
   private _categories: ICategories[] = [];
-  private _products = [
-    {
-      id: 1,
-      title: "a",
-      description: "desc",
-      image:
-        "https://static.onecms.io/wp-content/uploads/sites/19/2011/04/08/chocolate-chip-muffins-ck-2000.jpg",
-      price: 200,
-    },
-    {
-      id: 2,
-      title: "b",
-      description: "desc",
-      image:
-        "https://static.onecms.io/wp-content/uploads/sites/19/2011/04/08/chocolate-chip-muffins-ck-2000.jpg",
-      price: 200,
-    },
-    {
-      id: 3,
-      title: "c",
-      description: "desc",
-      image:
-        "https://static.onecms.io/wp-content/uploads/sites/19/2011/04/08/chocolate-chip-muffins-ck-2000.jpg",
-      price: 200,
-    },
-    {
-      id: 4,
-      title: "d",
-      description: "desc",
-      image:
-        "https://static.onecms.io/wp-content/uploads/sites/19/2011/04/08/chocolate-chip-muffins-ck-2000.jpg",
-      price: 200,
-    },
-    {
-      id: 5,
-      title: "e",
-      description: "desc",
-      image:
-        "https://static.onecms.io/wp-content/uploads/sites/19/2011/04/08/chocolate-chip-muffins-ck-2000.jpg",
-      price: 200,
-    },
-  ];
+  private _products: IProducts[] = [];
   private _seletedCategory: ICategories = { id: 0, title: "", description: "" };
   constructor() {
     makeAutoObservable(this);

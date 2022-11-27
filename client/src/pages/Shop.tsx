@@ -4,7 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { Context } from "..";
 import CategoriesBar from "../components/CategoriesBar";
 import ProductsList from "../components/ProductsList";
-import { fetchCategories } from "../http/productApi";
+import { fetchCategories, fetchProducts } from "../http/productApi";
 
 const Shop = observer(() => {
   const { product } = useContext(Context);
@@ -12,6 +12,9 @@ const Shop = observer(() => {
   useEffect(() => {
     fetchCategories().then((data) => {
       product?.setCategories(data);
+    });
+    fetchProducts().then((data) => {
+      product?.setProducts(data);
     });
   }, []);
 

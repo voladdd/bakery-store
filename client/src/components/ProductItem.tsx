@@ -20,7 +20,10 @@ const ProductItem = ({ product }: ProductItemProps) => {
           navigate(PRODUCT_ROUTE + "/" + product.id);
         }}
       >
-        <Card.Img variant="top" src={product.image}></Card.Img>
+        <Card.Img
+          variant="top"
+          src={process.env.REACT_APP_API_URL + product.image}
+        ></Card.Img>
         <Card.Body>
           <Card.Title>{product.title}</Card.Title>
           <Card.Text>{product.description}</Card.Text>
