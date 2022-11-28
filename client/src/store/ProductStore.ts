@@ -28,6 +28,7 @@ export default class ProductStore {
   setSelectedCategory(category: ICategories) {
     this._seletedCategory = category;
   }
+
   get selectedCategory(): ICategories {
     return this._seletedCategory;
   }

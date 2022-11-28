@@ -26,7 +26,6 @@ const ProductItem = ({ product }: ProductItemProps) => {
         ></Card.Img>
         <Card.Body>
           <Card.Title>{product.title}</Card.Title>
-          <Card.Text>{product.description}</Card.Text>
           <Card.Subtitle>{product.price} руб.</Card.Subtitle>
         </Card.Body>
       </Card>

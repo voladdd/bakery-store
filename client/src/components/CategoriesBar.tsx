@@ -9,6 +9,8 @@ const CategoriesBar = observer(() => {
     <ListGroup>
       {product?.categories.map((category) => (
         <ListGroup.Item
+          action
+          variant="light"
           style={{ cursor: "pointer" }}
           active={category.id === product.selectedCategory.id}
           onClick={() => product.setSelectedCategory(category)}

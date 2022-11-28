@@ -5,9 +5,10 @@ import { Context } from "..";
 import CategoriesBar from "../components/CategoriesBar";
 import ProductsList from "../components/ProductsList";
 import { fetchCategories, fetchProducts } from "../http/productApi";
+import { SHOP_ROUTE } from "../utils/consts";
 
 const Shop = observer(() => {
-  const { product } = useContext(Context);
+  const { product, user } = useContext(Context);
 
   useEffect(() => {
     fetchCategories().then((data) => {
@@ -16,6 +17,7 @@ const Shop = observer(() => {
     fetchProducts().then((data) => {
       product?.setProducts(data);
     });
+    user?.setCurrentRoute(SHOP_ROUTE);
   }, []);
 
   return (
