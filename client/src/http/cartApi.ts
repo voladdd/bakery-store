@@ -1,6 +1,5 @@
-import jwtDecode from "jwt-decode";
 import { $authHost } from ".";
-import { ICategories, IProducts } from "../store/ProductStore";
+import { IProducts } from "../store/ProductStore";
 
 interface fetchCart {
   data: {
@@ -48,5 +47,15 @@ export const postAddProductToCart = async (id: number): Promise<any> => {
 
 export const deleteProductFromCart = async (id: number): Promise<any> => {
   const response = await $authHost.delete(`/products/${id}/cart`);
+  return response;
+};
+
+export const patchProductQuantity = async (
+  id: number,
+  quantity: number
+): Promise<any> => {
+  const response = await $authHost.patch(`/products/${id}/cart`, {
+    quantity,
+  });
   return response;
 };

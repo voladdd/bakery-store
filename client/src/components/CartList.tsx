@@ -2,9 +2,18 @@ import { observer } from "mobx-react-lite";
 import React, { useContext } from "react";
 import { Button, Image, Row, Form, Col } from "react-bootstrap";
 import { Context } from "..";
-import { deleteProductFromCart } from "../http/cartApi";
+import {
+  deleteProductFromCart,
+  fetchUserCart,
+  patchProductQuantity,
+} from "../http/cartApi";
+import { CalculateCartPrice } from "../pages/Cart";
 
-const CartList = observer(() => {
+interface CartListProps {
+  setPrice: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const CartList = observer(({ setPrice }: CartListProps) => {
   const { cart } = useContext(Context);
   return (
     <Form>
@@ -21,16 +30,39 @@ const CartList = observer(() => {
               <p>{p.product.price} руб.</p>
             </Col>
             <Col>
-              <Form.Control type="number" placeholder={p.quantity.toString()} />
+              <Form.Control
+                type="number"
+                placeholder={p.quantity.toString()}
+                onBlur={async (e) => {
+                  if (Number(e.target.value) !== p.quantity) {
+                    await patchProductQuantity(
+                      p.product.id,
+                      Number(e.target.value)
+                    );
+                    await fetchUserCart().then((data) => {
+                      cart?.setProducts(data);
+                      const price = CalculateCartPrice(cart!);
+                      cart.setPrice(price);
+                      setPrice(price);
+                    });
+                  }
+                }}
+              />
             </Col>
             <Col className="d-flex justify-content-end">
               <Button
                 variant="secondary"
-                onClick={() => {
-                  deleteProductFromCart(p.product.id);
+                onClick={async () => {
+                  await deleteProductFromCart(p.product.id);
                   cart.setProducts(
                     cart.products.filter((v) => v.product.id !== p.product.id)
                   );
+                  await fetchUserCart().then((data) => {
+                    cart?.setProducts(data);
+                    const price = CalculateCartPrice(cart!);
+                    cart.setPrice(price);
+                    setPrice(price);
+                  });
                 }}
               >
                 Убрать
