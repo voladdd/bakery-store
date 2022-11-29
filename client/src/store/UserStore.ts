@@ -25,7 +25,6 @@ export default class UserStore {
     this._user = user;
   }
   setUserRoles(roles: Roles[]) {
-    console.log(this._userRoles);
     this._userRoles = roles;
   }
 

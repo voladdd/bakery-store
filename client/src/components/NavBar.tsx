@@ -18,7 +18,6 @@ const NavBar = observer(() => {
   const { user } = useContext(Context);
   const navigate = useNavigate();
   const location = useLocation();
-  // console.log(location);
   // const isLogin = location.pathname === LOGIN_ROUTE;
 
   const logOut = () => {

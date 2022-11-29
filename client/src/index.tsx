@@ -5,15 +5,19 @@ import App from "./App";
 import UserStore from "./store/UserStore";
 import reportWebVitals from "./reportWebVitals";
 import ProductStore from "./store/ProductStore";
-
-// const user = new UserStore();
+import CartStore from "./store/CartStore";
 
 interface IContext {
   user: UserStore | null;
   product: ProductStore | null;
+  cart: CartStore | null;
 }
 
-export const Context = createContext<IContext>({ user: null, product: null });
+export const Context = createContext<IContext>({
+  user: null,
+  product: null,
+  cart: null,
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -21,7 +25,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <>
     <Context.Provider
-      value={{ user: new UserStore(), product: new ProductStore() }}
+      value={{
+        user: new UserStore(),
+        product: new ProductStore(),
+        cart: new CartStore(),
+      }}
     >
       <App />
     </Context.Provider>
