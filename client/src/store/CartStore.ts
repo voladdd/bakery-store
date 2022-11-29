@@ -1,24 +1,16 @@
 import { IProducts } from "./ProductStore";
 import { makeAutoObservable } from "mobx";
-
-export interface ICart {
-  products: [
-    {
-      product: IProducts | null;
-      quantity: number | null;
-    }
-  ];
-}
+import { fetchCartKeys } from "../http/cartApi";
 
 export default class CartStore {
-  private _cart: ICart = { products: [{ product: null, quantity: null }] };
+  private _products: fetchCartKeys[] = [];
   constructor() {
     makeAutoObservable(this);
   }
-  setCart(cart: ICart) {
-    this._cart = cart;
+  setProducts(products: fetchCartKeys[]) {
+    this._products = products;
   }
-  get cart(): ICart {
-    return this._cart;
+  get products(): fetchCartKeys[] {
+    return this._products;
   }
 }

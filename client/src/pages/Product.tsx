@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Card, Container, Button, Image } from "react-bootstrap";
+import { Card, Container, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { postAddProductToCart } from "../http/cartApi";
 import { fetchOneProduct } from "../http/productApi";
 import { IProducts } from "../store/ProductStore";
 
@@ -22,7 +23,14 @@ const ProductPage = () => {
           <Card.Text>{product?.description}</Card.Text>
           <Card.Subtitle>{product?.price} руб.</Card.Subtitle>
         </Card.Body>
-        <Button variant="dark">Добавить в корзину</Button>
+        <Button
+          variant="dark"
+          onClick={() => {
+            postAddProductToCart(Number(product?.id));
+          }}
+        >
+          Добавить в корзину
+        </Button>
       </Card>
     </Container>
   );

@@ -1,18 +1,25 @@
 import { observer } from "mobx-react-lite";
 import React, { useContext, useEffect } from "react";
+import { Container } from "react-bootstrap";
 import { Context } from "..";
+import CartList from "../components/CartList";
 import { fetchUserCart } from "../http/cartApi";
 import { CART_ROUTE, SHOP_ROUTE } from "../utils/consts";
 
 const Cart = observer(() => {
-  const { user } = useContext(Context);
+  const { user, cart } = useContext(Context);
   useEffect(() => {
     fetchUserCart().then((data) => {
-      console.log(data);
+      cart?.setProducts(data);
     });
     user?.setCurrentRoute(CART_ROUTE);
   }, []);
-  return <div>Cart</div>;
+
+  return (
+    <Container>
+      <CartList />
+    </Container>
+  );
 });
 
 export default Cart;
