@@ -6,17 +6,20 @@ import UserStore from "./store/UserStore";
 import reportWebVitals from "./reportWebVitals";
 import ProductStore from "./store/ProductStore";
 import CartStore from "./store/CartStore";
+import OrdersStore from "./store/OrdersStore";
 
 interface IContext {
   user: UserStore | null;
   product: ProductStore | null;
   cart: CartStore | null;
+  orders: OrdersStore | null;
 }
 
 export const Context = createContext<IContext>({
   user: null,
   product: null,
   cart: null,
+  orders: null,
 });
 
 const root = ReactDOM.createRoot(
@@ -29,6 +32,7 @@ root.render(
         user: new UserStore(),
         product: new ProductStore(),
         cart: new CartStore(),
+        orders: new OrdersStore(),
       }}
     >
       <App />
