@@ -7,6 +7,7 @@ import "./App.css";
 import AppRouter from "./components/AppRouter";
 import NavBar from "./components/NavBar";
 import { checkRoles } from "./http/userApi";
+import { Roles } from "./store/UserStore";
 
 const App = observer(() => {
   const { user } = useContext(Context);
@@ -15,9 +16,11 @@ const App = observer(() => {
   useEffect(() => {
     checkRoles()
       .then((data) => {
-        user?.setUser(user);
-        user?.setIsAuth(true);
-        user?.setUserRoles(data);
+        if (data.includes(Roles.User)) {
+          user?.setUser(user);
+          user?.setIsAuth(true);
+          user?.setUserRoles(data);
+        }
       })
       .finally(() => setLoading(false));
   }, []);

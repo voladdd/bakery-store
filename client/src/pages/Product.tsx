@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Container, Button } from "react-bootstrap";
+import { Card, Container, Button, Image } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { fetchOneProduct } from "../http/productApi";
 import { IProducts } from "../store/ProductStore";
@@ -11,18 +11,18 @@ const ProductPage = () => {
     fetchOneProduct(Number(id)).then((data) => setProduct(data));
   }, []);
   return (
-    <Container>
+    <Container className="d-flex justify-content-center">
       <Card style={{ width: "40rem" }}>
         <Card.Img
-          variant="top"
+          variant="left"
           src={`${process.env.REACT_APP_API_URL}${product?.image}`}
         ></Card.Img>
         <Card.Body>
           <Card.Title>{product?.title}</Card.Title>
           <Card.Text>{product?.description}</Card.Text>
-          <Card.Subtitle>{product?.price}</Card.Subtitle>
+          <Card.Subtitle>{product?.price} руб.</Card.Subtitle>
         </Card.Body>
-        <Button variant="primary">Добавить в корзину</Button>
+        <Button variant="dark">Добавить в корзину</Button>
       </Card>
     </Container>
   );

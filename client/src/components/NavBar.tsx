@@ -18,12 +18,13 @@ const NavBar = observer(() => {
   const { user } = useContext(Context);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   // const isLogin = location.pathname === LOGIN_ROUTE;
 
   const logOut = () => {
     user?.setUser({});
     user?.setIsAuth(false);
+    localStorage.clear();
   };
 
   return (
@@ -62,7 +63,7 @@ const NavBar = observer(() => {
                 href={ABOUT_ROUTE}
                 active={user?.currentRoute === ABOUT_ROUTE}
               >
-                Где купить/забрать?
+                Где купить?
               </Nav.Link>
               <Nav.Link
                 href={ORDERS_ROUTE}

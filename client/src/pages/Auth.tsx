@@ -27,7 +27,6 @@ const Auth = observer(() => {
       checkRoles().then((roles) => {
         user?.setUserRoles(roles);
       });
-      //setroles
       navigate(SHOP_ROUTE);
     } catch (error) {
       let message;

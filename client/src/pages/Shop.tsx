@@ -18,6 +18,7 @@ const Shop = observer(() => {
       product?.setProducts(data);
     });
     user?.setCurrentRoute(SHOP_ROUTE);
+    console.log(user?.isAuth);
   }, []);
 
   return (
