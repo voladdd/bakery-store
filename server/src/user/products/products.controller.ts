@@ -75,7 +75,7 @@ export class ProductsController {
   @Roles('User')
   @UseGuards(RolesGuard)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: 'Add product to cart' })
+  @ApiOperation({ summary: 'Remove product from cart' })
   @ApiResponse({ status: 200, type: Product })
   @Delete(':id/cart')
   removeFromCart(@Request() req, @Param('id') id: number) {

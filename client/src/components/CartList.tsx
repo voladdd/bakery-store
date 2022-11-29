@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import React, { useContext } from "react";
 import { Button, Image, Row, Form, Col } from "react-bootstrap";
 import { Context } from "..";
+import { deleteProductFromCart } from "../http/cartApi";
 
 const CartList = observer(() => {
   const { cart } = useContext(Context);
@@ -23,7 +24,17 @@ const CartList = observer(() => {
               <Form.Control type="number" placeholder={p.quantity.toString()} />
             </Col>
             <Col className="d-flex justify-content-end">
-              <Button variant="secondary">Убрать</Button>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  deleteProductFromCart(p.product.id);
+                  cart.setProducts(
+                    cart.products.filter((v) => v.product.id !== p.product.id)
+                  );
+                }}
+              >
+                Убрать
+              </Button>
             </Col>
           </Row>
         </Form.Group>

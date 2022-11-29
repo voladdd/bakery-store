@@ -45,3 +45,8 @@ export const postAddProductToCart = async (id: number): Promise<any> => {
   const response = await $authHost.post(`/products/${id}/cart`);
   return response;
 };
+
+export const deleteProductFromCart = async (id: number): Promise<any> => {
+  const response = await $authHost.delete(`/products/${id}/cart`);
+  return response;
+};
