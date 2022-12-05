@@ -1,12 +1,14 @@
 import { observer } from "mobx-react-lite";
 import React, { useContext, useEffect } from "react";
 import { Container, ListGroup, Badge } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { Context } from "..";
 import { getOrders } from "../http/orderApi";
 import { ORDERS_ROUTE } from "../utils/consts";
 
 const Orders = observer(() => {
   const { user, orders } = useContext(Context);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getOrders().then((data) => {
@@ -25,6 +27,11 @@ const Orders = observer(() => {
             key={ordr.id}
             as="li"
             className="d-flex justify-content-between align-items-start"
+            action
+            onClick={() => {
+              navigate(ORDERS_ROUTE + "/" + ordr.id);
+            }}
+            style={{ cursor: "pointer" }}
           >
             <div className="ms-2 me-auto">
               <div className="fw-bold">ЗАКАЗ #{ordr.id}</div>

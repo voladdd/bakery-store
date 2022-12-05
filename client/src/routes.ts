@@ -1,6 +1,7 @@
 import Admin from "./pages/Admin";
 import Auth from "./pages/Auth";
 import Cart from "./pages/Cart";
+import Order from "./pages/Order";
 import Orders from "./pages/Orders";
 import Product from "./pages/Product";
 import Seller from "./pages/Seller";
@@ -37,6 +38,10 @@ export const authRoutes: IRoutes[] = [
   {
     path: ORDERS_ROUTE,
     Component: Orders,
+  },
+  {
+    path: ORDERS_ROUTE + "/:id",
+    Component: Order,
   },
 ];
 

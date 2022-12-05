@@ -1,7 +1,7 @@
 import { $authHost } from ".";
 import { IProducts } from "../store/ProductStore";
 
-interface fetchCart {
+export interface fetchCart {
   data: {
     products: [
       {
