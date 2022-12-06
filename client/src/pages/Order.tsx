@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Card, Container } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Badge, Button, Card, Container } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchOrder, getOrder } from "../http/orderApi";
+import { PRODUCT_ROUTE } from "../utils/consts";
+
+const CalculatePrice = (order: fetchOrder["data"]["cart"] | undefined) => {
+  if (order) {
+    return order.products.reduce(
+      (p, c) => p + c.price * c.CartProducts.quantity,
+      0
+    );
+  }
+  return 0;
+};
 
 const Order = () => {
   const { id } = useParams();
   const [order, setOrder] = useState<fetchOrder["data"]>();
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState<Date>(new Date());
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getOrder(Number(id)).then((data) => {
@@ -15,15 +28,17 @@ const Order = () => {
         setDate(new Date(order.createdAt));
       }
     });
-  }, []);
+  });
   return (
     <Container className="d-flex justify-content-center">
       <Card className="mb-2">
         <Card.Header>
-          <h2>Заказ #{order?.id}</h2>
+          <h2>
+            Заказ #{order?.id} <Badge bg="secondary">{order?.status}</Badge>
+          </h2>
           <p>
             Создан:{" "}
-            {`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}
+            {`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}`}
           </p>
         </Card.Header>
         <Card.Body>
@@ -32,7 +47,15 @@ const Order = () => {
         {order?.cart.products.map((pr) => (
           <Card key={pr?.id}>
             <Card.Body>
-              <Card.Title>{pr?.title}</Card.Title>
+              <Button
+                onClick={() => {
+                  navigate(PRODUCT_ROUTE + "/" + pr?.id);
+                }}
+                variant="light"
+                className="mb-2"
+              >
+                {pr?.title}
+              </Button>
               <Card.Text>{pr?.description}</Card.Text>
               <Card.Footer>
                 Кол-во: {pr.CartProducts.quantity}
@@ -41,6 +64,9 @@ const Order = () => {
             </Card.Body>
           </Card>
         ))}
+        <Card.Footer>
+          <Card.Text>Итого: {CalculatePrice(order?.cart)} руб.</Card.Text>
+        </Card.Footer>
       </Card>
     </Container>
   );
