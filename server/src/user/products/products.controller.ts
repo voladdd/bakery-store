@@ -31,7 +31,7 @@ export class ProductsController {
   ) {}
 
   @ApiOperation({ summary: 'Get all products' })
-  @ApiResponse({ status: 200, type: [Product] })
+  @ApiResponse({ status: 200 })
   @Get()
   getAll() {
     return this.productService.GetAllProducts();
