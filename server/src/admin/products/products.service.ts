@@ -1,3 +1,4 @@
+import { GetProductsByCategoryIdQueryDto } from './../../user/products/dto/get-productsByCategoryIdQuery.dto';
 import { Category } from '../categories/categories.model';
 import { AddCategoryDto } from '../categories/dto/add-category.dto';
 import { CategoriesService } from '../categories/categories.service';
@@ -30,8 +31,13 @@ export class ProductsService {
     return product;
   }
 
-  async getProductsByCategoryId(id: number) {
+  async getProductsByCategoryId(
+    id: number,
+    dto: GetProductsByCategoryIdQueryDto,
+  ) {
     const products = await this.productRepository.findAll({
+      limit: 10,
+      offset: 10 * (dto.page - 1),
       include: {
         model: Category,
         as: 'categories',

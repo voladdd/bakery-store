@@ -1,3 +1,4 @@
+import { GetProductsByCategoryIdQueryDto } from './dto/get-productsByCategoryIdQuery.dto';
 import { UpdateCartProdcutsDto } from './dto/update-cartProducts.dto';
 import {
   Controller,
@@ -9,6 +10,7 @@ import {
   Delete,
   Patch,
   Body,
+  Query,
 } from '@nestjs/common';
 import {
   ApiBearerAuth,
@@ -40,8 +42,11 @@ export class ProductsController {
   @ApiOperation({ summary: 'Get all products' })
   @ApiResponse({ status: 200 })
   @Get('/category/:id')
-  getProductsByCategoryId(@Param('id') id: number) {
-    return this.productService.getProductsByCategoryId(id);
+  getProductsByCategoryId(
+    @Param('id') id: number,
+    @Query() query: GetProductsByCategoryIdQueryDto,
+  ) {
+    return this.productService.getProductsByCategoryId(id, query);
   }
 
   @ApiOperation({ summary: 'Get product by ID' })
