@@ -6,6 +6,7 @@ import { Product } from './products.model';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateProductDto } from './dto/create-product.dto';
+import { where } from 'sequelize';
 
 @Injectable()
 export class ProductsService {
@@ -27,6 +28,19 @@ export class ProductsService {
   async GetAllProducts() {
     const product = await this.productRepository.findAll({ include: Category });
     return product;
+  }
+
+  async getProductsByCategoryId(id: number) {
+    const products = await this.productRepository.findAll({
+      include: {
+        model: Category,
+        as: 'categories',
+        where: {
+          id: id,
+        },
+      },
+    });
+    return products;
   }
 
   async getProductById(id: number) {

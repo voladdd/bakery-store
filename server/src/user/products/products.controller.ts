@@ -37,6 +37,13 @@ export class ProductsController {
     return this.productService.GetAllProducts();
   }
 
+  @ApiOperation({ summary: 'Get all products' })
+  @ApiResponse({ status: 200 })
+  @Get('/category/:id')
+  getProductsByCategoryId(@Param('id') id: number) {
+    return this.productService.getProductsByCategoryId(id);
+  }
+
   @ApiOperation({ summary: 'Get product by ID' })
   @ApiResponse({ status: 200, type: Product })
   @Get(':id')
