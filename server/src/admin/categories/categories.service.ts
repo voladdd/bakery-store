@@ -30,6 +30,12 @@ export class CategoriesService {
     const categories = await this.categoryRepository.findAll({
       include: Product,
     });
-    return categories.map((category) => category.products.length);
+    //need to optimize via sequilize fn, or create few request with count and then add to returned obj
+    return categories.map((category) => ({
+      id: category.id,
+      title: category.title,
+      description: category.description,
+      count: category.products.length,
+    }));
   }
 }
