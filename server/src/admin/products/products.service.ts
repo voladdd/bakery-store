@@ -7,7 +7,6 @@ import { Product } from './products.model';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateProductDto } from './dto/create-product.dto';
-import { where } from 'sequelize';
 
 @Injectable()
 export class ProductsService {

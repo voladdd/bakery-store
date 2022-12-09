@@ -1,12 +1,17 @@
+import { ProductCategories } from './../products/product-categories.model';
+import { Product } from './../products/products.model';
 import { Category } from './categories.model';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateCategoryDto } from './dto/create-category.dto';
+import { Sequelize } from 'sequelize';
 
 @Injectable()
 export class CategoriesService {
   constructor(
     @InjectModel(Category) private categoryRepository: typeof Category,
+    @InjectModel(ProductCategories)
+    private productCategories: typeof ProductCategories,
   ) {}
 
   async CreateCategory(dto: CreateCategoryDto) {
@@ -22,7 +27,9 @@ export class CategoriesService {
   }
 
   async getAllCategories() {
-    const category = await this.categoryRepository.findAll();
-    return category;
+    const categories = await this.categoryRepository.findAll({
+      include: Product,
+    });
+    return categories.map((category) => category.products.length);
   }
 }

@@ -1,9 +1,12 @@
 import { Product } from './products.model';
 import { Category } from '../categories/categories.model';
 import {
+  BelongsTo,
   Column,
   DataType,
   ForeignKey,
+  HasMany,
+  HasOne,
   Model,
   Table,
 } from 'sequelize-typescript';

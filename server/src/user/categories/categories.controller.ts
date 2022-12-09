@@ -19,7 +19,7 @@ export class CategoriesController {
   constructor(private categoriesService: CategoriesService) {}
 
   @ApiOperation({ summary: 'Get categories' })
-  @ApiResponse({ status: 200, type: Category })
+  @ApiResponse({ status: 200 })
   @Get()
   getAllCategories() {
     return this.categoriesService.getAllCategories();

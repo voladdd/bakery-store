@@ -15,7 +15,11 @@ export interface IProducts {
 export default class ProductStore {
   private _categories: ICategories[] = [];
   private _products: IProducts[] = [];
-  private _seletedCategory: ICategories = { id: 0, title: "", description: "" };
+  private _seletedCategory: ICategories = {
+    id: -1,
+    title: "",
+    description: "",
+  };
   constructor() {
     makeAutoObservable(this);
   }

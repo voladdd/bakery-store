@@ -7,6 +7,22 @@ const CategoriesBar = observer(() => {
   const { product } = useContext(Context);
   return (
     <ListGroup>
+      <ListGroup.Item
+        action
+        variant="light"
+        style={{ cursor: "pointer" }}
+        active={-1 === product?.selectedCategory.id}
+        onClick={() =>
+          product?.setSelectedCategory({
+            id: -1,
+            title: "Все",
+            description: "Вся выпечка",
+          })
+        }
+        key={-1}
+      >
+        Все
+      </ListGroup.Item>
       {product?.categories.map((category) => (
         <ListGroup.Item
           action
