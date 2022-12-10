@@ -4,6 +4,7 @@ export interface ICategories {
   id: number;
   title: string;
   description: string;
+  count: number;
 }
 export interface IProducts {
   id: number;
@@ -16,15 +17,16 @@ export default class ProductStore {
   private _categories: ICategories[] = [];
   private _products: IProducts[] = [];
   private _seletedCategory: ICategories = {
-    id: -1,
+    id: 5,
     title: "",
     description: "",
+    count: 0,
   };
   constructor() {
     makeAutoObservable(this);
   }
   setCategories(categories: ICategories[]) {
-    this._categories = categories;
+    this._categories = categories.sort((a, b) => b.count - a.count);
   }
   setProducts(products: IProducts[]) {
     this._products = products;
