@@ -11,6 +11,15 @@ export const fetchProducts = async (): Promise<IProducts[]> => {
   const { data } = await $host.get("/products");
   return data;
 };
+
+export const getProductsByCategory = async (
+  id: number,
+  page: number
+): Promise<IProducts[]> => {
+  const { data } = await $host.get(`/products/category/${id}/?page=${page}`);
+  return data;
+};
+
 export const fetchOneProduct = async (id: number): Promise<IProducts> => {
   const { data } = await $host.get("/products/" + id);
   return data;

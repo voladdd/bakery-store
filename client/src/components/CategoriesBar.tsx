@@ -2,9 +2,10 @@ import { observer } from "mobx-react-lite";
 import React, { useContext } from "react";
 import { Badge, ListGroup } from "react-bootstrap";
 import { Context } from "..";
+import { getProductsByCategory } from "../http/productApi";
 
 const CategoriesBar = observer(() => {
-  const { product } = useContext(Context);
+  const { product, user } = useContext(Context);
   return (
     <ListGroup>
       {product?.categories.map((category) => (
@@ -13,7 +14,15 @@ const CategoriesBar = observer(() => {
           variant="light"
           style={{ cursor: "pointer" }}
           active={category.id === product.selectedCategory.id}
-          onClick={() => product.setSelectedCategory(category)}
+          onClick={() => {
+            product.setSelectedCategory(category);
+            getProductsByCategory(
+              product.selectedCategory.id,
+              user!.currentPage
+            ).then((data) => {
+              product?.setProducts(data);
+            });
+          }}
           key={category.id}
           className="d-flex justify-content-between"
         >

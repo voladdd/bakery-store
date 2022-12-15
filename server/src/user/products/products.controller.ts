@@ -39,7 +39,7 @@ export class ProductsController {
     return this.productService.GetAllProducts();
   }
 
-  @ApiOperation({ summary: 'Get all products' })
+  @ApiOperation({ summary: 'Get products by category id' })
   @ApiResponse({ status: 200 })
   @Get('/category/:id')
   getProductsByCategoryId(

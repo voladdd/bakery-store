@@ -8,6 +8,7 @@ export enum Roles {
 
 export default class UserStore {
   private _currentRoute: string = "/shop";
+  private _currentPage: number = 1;
   private _isAuth: boolean = false;
   private _userRoles: Roles[] = [];
   private _user: {} = {};
@@ -20,7 +21,9 @@ export default class UserStore {
   setIsAuth(bool: boolean) {
     this._isAuth = bool;
   }
-
+  setCurrentPage(page: number) {
+    this._currentPage = page;
+  }
   setUser(user: {}) {
     this._user = user;
   }
@@ -30,6 +33,9 @@ export default class UserStore {
 
   get isAuth() {
     return this._isAuth;
+  }
+  get currentPage() {
+    return this._currentPage;
   }
   get user() {
     return this._user;
