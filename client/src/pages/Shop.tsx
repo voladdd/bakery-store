@@ -15,15 +15,16 @@ const Shop = observer(() => {
   const { product, user } = useContext(Context);
 
   useEffect(() => {
-    fetchCategories().then((data) => {
-      product?.setCategories(data);
-    });
-    // fetchProducts().then((data) => {
-    //   product?.setProducts(data);
-    // });
     getProductsByCategory(5, 1).then((data) => {
       product?.setProducts(data);
     });
+    fetchCategories().then((data) => {
+      product?.setCategories(data);
+    });
+    // product?.setSelectedCategory(product.categories[4]);
+    // fetchProducts().then((data) => {
+    //   product?.setProducts(data);
+    // });
     user?.setCurrentRoute(SHOP_ROUTE);
   }, []);
 

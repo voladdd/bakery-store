@@ -27,6 +27,7 @@ export default class ProductStore {
   }
   setCategories(categories: ICategories[]) {
     this._categories = categories.sort((a, b) => b.count - a.count);
+    this._seletedCategory.count = categories.filter((c) => c.id === 5)[0].count;
   }
   setProducts(products: IProducts[]) {
     this._products = products;

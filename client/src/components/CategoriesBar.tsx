@@ -16,12 +16,12 @@ const CategoriesBar = observer(() => {
           active={category.id === product.selectedCategory.id}
           onClick={() => {
             product.setSelectedCategory(category);
-            getProductsByCategory(
-              product.selectedCategory.id,
-              user!.currentPage
-            ).then((data) => {
-              product?.setProducts(data);
-            });
+            getProductsByCategory(product.selectedCategory.id, 1).then(
+              (data) => {
+                product?.setProducts(data);
+              }
+            );
+            user?.setCurrentPage(1);
           }}
           key={category.id}
           className="d-flex justify-content-between"
