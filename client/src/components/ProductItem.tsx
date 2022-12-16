@@ -12,9 +12,9 @@ const ProductItem = ({ product }: ProductItemProps) => {
   const navigate = useNavigate();
 
   return (
-    <Col md={3}>
+    <Col md={4} sm={6}>
       <Card
-        style={{ width: "18rem", cursor: "pointer" }}
+        style={{ cursor: "pointer" }}
         border={"light"}
         onClick={() => {
           navigate(PRODUCT_ROUTE + "/" + product.id);

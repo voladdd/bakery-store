@@ -21,10 +21,6 @@ const Shop = observer(() => {
     fetchCategories().then((data) => {
       product?.setCategories(data);
     });
-    // product?.setSelectedCategory(product.categories[4]);
-    // fetchProducts().then((data) => {
-    //   product?.setProducts(data);
-    // });
     user?.setCurrentRoute(SHOP_ROUTE);
   }, []);
 
