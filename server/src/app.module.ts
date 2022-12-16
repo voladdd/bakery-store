@@ -29,7 +29,8 @@ import * as path from 'path';
   providers: [],
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: path.resolve(__dirname, 'static'),
+      serveRoot: '/public',
+      rootPath: path.resolve(__dirname, '..', 'public'),
     }),
     ConfigModule.forRoot({
       envFilePath: `.${process.env.NODE_ENV}.env`,
