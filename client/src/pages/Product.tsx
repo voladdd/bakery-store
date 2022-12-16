@@ -20,26 +20,28 @@ const ProductPage = () => {
   }, []);
   return (
     <Container className="d-flex justify-content-center">
-      <Card style={{ width: "40rem" }}>
-        <Card.Img
-          variant="left"
-          src={`${process.env.REACT_APP_API_URL}${product?.image}`}
-        ></Card.Img>
-        <Card.Body>
-          <Card.Title>{product?.title}</Card.Title>
-          <Card.Text>{product?.description}</Card.Text>
-          <Card.Subtitle>{product?.price} руб.</Card.Subtitle>
-        </Card.Body>
-        <Button
-          variant="dark"
-          onClick={() => {
-            postAddProductToCart(Number(product?.id));
-            setShowAlert(true);
-          }}
-        >
-          Добавить в корзину
-        </Button>
-      </Card>
+      {product ? (
+        <Card style={{ width: "40rem" }}>
+          <Card.Img
+            variant="left"
+            src={`${process.env.REACT_APP_API_URL}public/${product.image}`}
+          ></Card.Img>
+          <Card.Body>
+            <Card.Title>{product.title}</Card.Title>
+            <Card.Text>{product.description}</Card.Text>
+            <Card.Subtitle>{product.price} руб.</Card.Subtitle>
+          </Card.Body>
+          <Button
+            variant="dark"
+            onClick={() => {
+              postAddProductToCart(Number(product.id));
+              setShowAlert(true);
+            }}
+          >
+            Добавить в корзину
+          </Button>
+        </Card>
+      ) : null}
       {showAlert ? (
         <ToastContainer className="p-3" position="bottom-end">
           <Toast onClose={() => setShowAlert(false)}>

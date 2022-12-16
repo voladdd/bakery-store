@@ -22,7 +22,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
       >
         <Card.Img
           variant="top"
-          src={process.env.REACT_APP_API_URL + product.image}
+          src={process.env.REACT_APP_API_URL + "public/" + product.image}
         ></Card.Img>
         <Card.Body>
           <Card.Title>{product.title}</Card.Title>
