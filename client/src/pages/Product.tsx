@@ -5,6 +5,7 @@ import {
   Button,
   Toast,
   ToastContainer,
+  Placeholder,
 } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { postAddProductToCart } from "../http/cartApi";
@@ -15,15 +16,40 @@ const ProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<IProducts>();
   const [showAlert, setShowAlert] = useState(false);
+  const [loaded, setLoaded] = useState<boolean>(false);
+
   useEffect(() => {
     fetchOneProduct(Number(id)).then((data) => setProduct(data));
   }, []);
+
   return (
     <Container className="d-flex justify-content-center">
+      {!loaded && (
+        <Card border={"light"}>
+          <Card.Img
+            style={{
+              width: "20rem",
+              height: "12rem",
+              backgroundColor: "lightgrey",
+            }}
+          />
+          <Card.Body>
+            <Placeholder as={Card.Title} animation="glow">
+              <Placeholder xs={7} />
+            </Placeholder>
+            <Placeholder as={Card.Subtitle} animation="glow">
+              <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
+            </Placeholder>
+          </Card.Body>
+        </Card>
+      )}
       {product ? (
-        <Card style={{ width: "40rem" }}>
+        <Card style={!loaded ? { display: "none" } : { width: "40rem" }}>
           <Card.Img
             variant="left"
+            onLoad={() => {
+              setLoaded(true);
+            }}
             src={`${process.env.REACT_APP_API_URL}public/${product.image}`}
           ></Card.Img>
           <Card.Body>

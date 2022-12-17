@@ -23,7 +23,7 @@ const CartList = observer(({ setPrice }: CartListProps) => {
           <Row>
             <Image
               style={{ width: "18rem" }}
-              src={process.env.REACT_APP_API_URL + p.product.image}
+              src={process.env.REACT_APP_API_URL + "public/" + p.product.image}
             />
             <Col>
               <h2>{p.product.title}</h2>

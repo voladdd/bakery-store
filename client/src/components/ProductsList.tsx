@@ -36,9 +36,11 @@ const ProductsList = observer(() => {
   return (
     <Container>
       <Row className="d-flex flex-row flex-wrap">
-        {product?.products.map((product) => (
-          <ProductItem key={product.id} product={product} />
-        ))}
+        {product
+          ? product.products.map((product) => (
+              <ProductItem key={product.id} product={product} />
+            ))
+          : "loading"}
       </Row>
       <Pagination size="sm">{items}</Pagination>
     </Container>

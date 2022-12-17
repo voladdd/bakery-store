@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, Col, Image } from "react-bootstrap";
+import React, { useState } from "react";
+import { Card, Col, Image, Placeholder } from "react-bootstrap";
 import { IProducts } from "../store/ProductStore";
 import { useNavigate } from "react-router-dom";
 import { PRODUCT_ROUTE } from "../utils/consts";
@@ -10,11 +10,31 @@ type ProductItemProps = {
 
 const ProductItem = ({ product }: ProductItemProps) => {
   const navigate = useNavigate();
+  const [loaded, setLoaded] = useState<boolean>(false);
 
   return (
     <Col md={4} sm={6}>
+      {!loaded && (
+        <Card border={"light"}>
+          <Card.Img
+            style={{
+              width: "18rem",
+              height: "12rem",
+              backgroundColor: "lightgrey",
+            }}
+          />
+          <Card.Body>
+            <Placeholder as={Card.Title} animation="glow">
+              <Placeholder xs={7} />
+            </Placeholder>
+            <Placeholder as={Card.Subtitle} animation="glow">
+              <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
+            </Placeholder>
+          </Card.Body>
+        </Card>
+      )}
       <Card
-        style={{ cursor: "pointer" }}
+        style={!loaded ? { display: "none" } : { cursor: "pointer" }}
         border={"light"}
         onClick={() => {
           navigate(PRODUCT_ROUTE + "/" + product.id);
@@ -22,6 +42,9 @@ const ProductItem = ({ product }: ProductItemProps) => {
       >
         <Card.Img
           variant="top"
+          onLoad={() => {
+            setLoaded(true);
+          }}
           src={process.env.REACT_APP_API_URL + "public/" + product.image}
         ></Card.Img>
         <Card.Body>
